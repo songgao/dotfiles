@@ -2,6 +2,9 @@ if has("syntax")
   syntax on
 endif
 
+set nocompatible
+set laststatus=2
+
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching
@@ -42,3 +45,5 @@ set ts=4 sw=4 et
 set colorcolumn=80
 set undofile
 set shell=/bin/bash
+
+let g:Powerline_symbols = 'fancy'
