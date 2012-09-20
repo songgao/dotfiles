@@ -2,8 +2,9 @@
 	name = Song Gao
 	email = song.gao.beta@gmail.com
 [core]
-	autocrlf = input
+    autocrlf = input
 	safecrlf = true
+	excludesfile = /Users/songgao/.gitignore_global
 [alias]
     co = checkout
     ci = commit
@@ -21,3 +22,5 @@
 	trustExitCode = true
 [color]
 	ui = true
+[credential]
+	helper = osxkeychain
