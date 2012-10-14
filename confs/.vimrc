@@ -47,5 +47,3 @@ set undofile
 set shell=/bin/bash
 
 let g:Powerline_symbols = 'fancy'
-
-autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4 nolist
