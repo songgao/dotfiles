@@ -47,3 +47,4 @@ set undofile
 set shell=/bin/bash
 
 let g:Powerline_symbols = 'fancy'
+inoremap <Nul> <C-x><C-o>
