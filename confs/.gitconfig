@@ -4,7 +4,8 @@
 [core]
     autocrlf = input
 	safecrlf = true
-	excludesfile = /Users/songgao/.gitignore_global
+	excludesfile = /home/songgao/.gitignore_global
+	pager = less -r
 [alias]
     co = checkout
     ci = commit
@@ -24,3 +25,5 @@
 	ui = true
 [credential]
 	helper = osxkeychain
+[push]
+	default = nothing
