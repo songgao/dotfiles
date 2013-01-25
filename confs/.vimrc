@@ -25,6 +25,7 @@ let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 
 filetype plugin indent on
+set tags=tags;/
 set ofu=syntaxcomplete#complete
 
 set autoindent
