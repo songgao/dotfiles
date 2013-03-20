@@ -73,13 +73,6 @@ battery+=(["background"]="colour137")
 battery+=(["separator"]="${separator_left_bold}")
 register_segment "battery"
 
-declare -A weather
-weather+=(["script"]="${segments_path}/weather.sh")
-weather+=(["foreground"]="colour255")
-weather+=(["background"]="colour37")
-weather+=(["separator"]="${separator_left_bold}")
-#register_segment "weather"
-
 declare -A xkb_layout
 if [ "$PLATFORM" == "linux" ]; then
 	xkb_layout+=(["script"]="${segments_path}/xkb_layout.sh")
@@ -111,6 +104,13 @@ time+=(["background"]="colour235")
 time+=(["separator"]="${separator_left_thin}")
 time+=(["separator_fg"]="default")
 register_segment "time"
+
+declare -A weather
+weather+=(["script"]="${segments_path}/weather.sh")
+weather+=(["foreground"]="colour255")
+weather+=(["background"]="colour234")
+weather+=(["separator"]="${separator_left_bold}")
+register_segment "weather"
 
 # Print the status line in the order of registration above.
 print_status_line_right
