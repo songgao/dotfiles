@@ -25,8 +25,19 @@ let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 
 filetype plugin indent on
-set tags=tags;/
+"set tags=tags;/
 set tags+=~/.vim/tags/cpp
+map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+let OmniCpp_MayCompleteDot = 1 " autocomplete after .
+let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
+let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+
 set ofu=syntaxcomplete#complete
 set completeopt+=longest,menuone
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
