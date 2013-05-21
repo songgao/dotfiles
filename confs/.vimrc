@@ -31,11 +31,11 @@ set completeopt+=longest,menuone
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 set autoindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set smarttab
-set softtabstop=4
+set softtabstop=2
 
 set wildmenu
 set mouse=a
@@ -44,7 +44,7 @@ syntax enable
 
 colorscheme Tomorrow-Night
 
-set ts=4 sw=4 et
+set ts=2 sw=2 et
 set colorcolumn=80
 set undofile
 set shell=/bin/bash
