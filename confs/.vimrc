@@ -53,3 +53,5 @@ let g:Powerline_symbols = 'fancy'
 inoremap <Nul> <C-x><C-o>
 
 map <C-k> :NERDTreeToggle<CR>
+exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
+autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cw
