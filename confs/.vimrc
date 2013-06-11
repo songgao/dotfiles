@@ -43,6 +43,11 @@ set number
 syntax enable
 
 colorscheme Tomorrow-Night
+if has("gui_running")
+  colorscheme codeschool
+  set guioptions-=r " Removes right hand scroll bar
+  set go-=L " Removes left hand scroll bar
+endif
 
 set ts=2 sw=2 et
 set colorcolumn=80
