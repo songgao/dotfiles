@@ -19,44 +19,34 @@ if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
 
-au! BufRead,BufNewFile *.json set filetype=json 
+set shell=/bin/bash
 
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 
 filetype plugin indent on
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+set softtabstop=4
+
+set wildmenu
+set number
+set colorcolumn=80
+set undofile
+
+colorscheme Tomorrow-Night
+let g:Powerline_symbols = 'fancy'
+
 set tags=tags;/
 set ofu=syntaxcomplete#complete
 set completeopt+=longest,menuone
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-
-set autoindent
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set smarttab
-set softtabstop=2
-
-set wildmenu
-set mouse=a
-set number
-syntax enable
-
-colorscheme Tomorrow-Night
-if has("gui_running")
-  colorscheme codeschool
-  set guioptions-=r " Removes right hand scroll bar
-  set go-=L " Removes left hand scroll bar
-endif
-
-set ts=2 sw=2 et
-set colorcolumn=80
-set undofile
-set shell=/bin/bash
-
-let g:Powerline_symbols = 'fancy'
 inoremap <Nul> <C-x><C-o>
-
 map <C-k> :NERDTreeToggle<CR>
-exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
-autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cw
+
+au! BufRead,BufNewFile *.json set filetype=json 
+au BufWritePre *.go Fmt
+au FileType go setl noet ts=4 tw=0 makeprg=go\ build
