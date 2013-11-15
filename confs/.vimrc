@@ -38,7 +38,7 @@ set colorcolumn=80
 set undofile
 
 colorscheme Tomorrow-Night
-let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
 
 set tags=tags;/
 set ofu=syntaxcomplete#complete
