@@ -48,5 +48,6 @@ inoremap <Nul> <C-x><C-o>
 map <C-k> :NERDTreeToggle<CR>
 
 au! BufRead,BufNewFile *.json set filetype=json 
+let g:gofmt_command="goimports"
 au BufWritePre *.go Fmt
 au FileType go setl noet ts=4 tw=0 makeprg=go\ build
