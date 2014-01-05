@@ -1,31 +1,55 @@
-if has("syntax")
-  syntax on
+set shell=/bin/bash
+set nocompatible
+if has('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-set nocompatible
-set laststatus=2
+call neobundle#rc(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-set showcmd		" Show (partial) command in status line.
-set showmatch		" Show matching brackets.
-set ignorecase		" Do case insensitive matching
-set smartcase		" Do smart case matching
-set incsearch		" Incremental search
-set autowrite		" Automatically save before commands like :next and :make
-"set hidden             " Hide buffers when they are abandoned
-set mouse=a		" Enable mouse usage (all modes)
-set backspace=indent,eol,start
+NeoBundle 'bling/vim-airline'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'Blackrush/vim-gocode'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'vim-scripts/JavaScript-Indent'
+NeoBundle 'ervandew/supertab'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'Valloric/YouCompleteMe', {
+\ 'build' : {
+\     'mac' : './install.sh --clang-completer',
+\     'unix' : './install.sh --clang-completer',
+\   },
+\ }
+
+filetype plugin indent on
+NeoBundleCheck
+
+
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
 
-set shell=/bin/bash
+if has("syntax")
+  syntax on
+endif
+
+set laststatus=2
+set showcmd		" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+set ignorecase		" Do case insensitive matching
+set smartcase		" Do smart case matching
+set incsearch		" Incremental search
+set autowrite		" Automatically save before commands like :next and :make
+set mouse=a		" Enable mouse usage (all modes)
+set backspace=indent,eol,start
 
 let &termencoding=&encoding
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 
-filetype plugin indent on
 set autoindent
 set tabstop=4
 set shiftwidth=4
@@ -40,12 +64,8 @@ set undofile
 
 colorscheme Tomorrow-Night
 let g:airline_powerline_fonts = 1
-
-set tags=tags;/
-set ofu=syntaxcomplete#complete
 set completeopt+=longest,menuone
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-inoremap <Nul> <C-x><C-o>
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf_cxx.py'
 map <C-k> :NERDTreeToggle<CR>
 
 au! BufRead,BufNewFile *.json set filetype=json 

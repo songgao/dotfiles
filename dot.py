@@ -28,7 +28,8 @@ def print_help():
     print
 
 def update():
-    commands.getstatusoutput("git pull")
+    commands.getstatusoutput("git pull origin master")
+    commands.getstatusoutput("git submodule update --init --recursive")
 
 def show(argv):
     for conf in argv:
