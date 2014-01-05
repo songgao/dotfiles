@@ -14,7 +14,6 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'vim-scripts/JavaScript-Indent'
-NeoBundle 'ervandew/supertab'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
 NeoBundle 'Valloric/YouCompleteMe', {
