@@ -4,7 +4,7 @@
 [core]
     autocrlf = input
 	safecrlf = true
-	excludesfile = /home/songgao/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	pager = less -r
 [alias]
     co = checkout
@@ -15,17 +15,9 @@
     type = cat-file -t
     dump = cat-file -p
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [color]
 	ui = true
 [credential]
 	helper = osxkeychain
 [push]
 	default = nothing
-[gc]
-	auto = 0
