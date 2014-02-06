@@ -88,7 +88,7 @@ alias ssh_nocheck="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=
 
 export GOROOT=$HOME/go
 export GOPATH=$HOME/gopath
-export GOBIN=$GOPATH/BIN
+export GOBIN=$GOPATH/bin
 export PATH=$GOROOT/bin:$GOBIN:$PATH
 
 export PATH=$HOME/.rvm/bin:$PATH
