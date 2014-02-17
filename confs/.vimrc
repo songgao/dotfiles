@@ -17,6 +17,7 @@ NeoBundle 'vim-scripts/JavaScript-Indent'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'Valloric/YouCompleteMe', {
 \ 'build' : {
 \     'mac' : './install.sh --clang-completer',
