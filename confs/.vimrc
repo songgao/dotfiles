@@ -18,12 +18,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'Valloric/YouCompleteMe', {
-\ 'build' : {
-\     'mac' : './install.sh --clang-completer',
-\     'unix' : './install.sh --clang-completer',
-\   },
-\ }
+NeoBundle 'Valloric/YouCompleteMe', {'build' : {'mac' : './install.sh --clang-completer --system-libclang', 'unix' : './install.sh --clang-completer --system-libclang', }, }
 
 filetype plugin indent on
 NeoBundleCheck
