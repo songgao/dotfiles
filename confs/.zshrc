@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="terminalparty"
+ZSH_THEME="af-magic"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -45,7 +45,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git virtualenv rvm vi-mode)
+plugins=(git virtualenv rvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -86,9 +86,22 @@ alias sl="sl -a"
 alias gf="gofmt -s -w -e -l"
 alias ssh_nocheck="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
-export GOROOT=$HOME/go
-export GOPATH=$HOME/gopath
-export GOBIN=$GOPATH/bin
-export PATH=$GOROOT/bin:$GOBIN:$PATH
+export PATH=/usr/texbin:$PATH
+export PATH=$HOME/repo/luvit/build/:$PATH
 
-export PATH=$HOME/.rvm/bin:$PATH
+export GOROOT=$HOME/go
+export PATH=$GOROOT/bin:$PATH
+
+export OLD_PATH=$PATH
+set_gopath() {
+  export GOPATH=$(grealpath $1)
+  export GOBIN=$GOPATH/bin
+  export PATH=$GOBIN:$OLD_PATH
+  if which colorgo &> /dev/null
+  then
+    alias go="colorgo"
+  else
+    unalias go
+  fi
+}
+set_gopath $HOME/gopath
