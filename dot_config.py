@@ -9,7 +9,6 @@ confs = {
             ],
         'vim': [
             ('f', '.vimrc', HOME + '/.vimrc'),
-            ('d', '.vim', HOME + '/.vim'),
             ],
         'git': [
             ('f', '.gitconfig', HOME + '/.gitconfig'),
