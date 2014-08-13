@@ -68,11 +68,6 @@ NeoBundle 'gorodinskiy/vim-coloresque'
 NeoBundle 'tpope/vim-haml'
 
 
-"" Javascript Bundle
-NeoBundle "scrooloose/syntastic"
-
-
-
 call neobundle#end()
 
 " Required:
@@ -102,10 +97,12 @@ filetype plugin on
 filetype indent on
 
 "" Tabs. May be overriten by autocmd rules
-set tabstop=4
-set softtabstop=0
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
+set smarttab
+set softtabstop=2
+set autoindent
 
 "" Map leader to ,
 let mapleader=','
@@ -120,9 +117,7 @@ set ignorecase
 set smartcase
 
 "" Encoding
-set bomb
 set ttyfast
-set binary
 
 "" Directories for swp files
 set nobackup
@@ -131,7 +126,7 @@ set noswapfile
 set fileformats=unix,dos,mac
 set backspace=indent,eol,start
 set showcmd
-set shell=/bin/sh
+set shell=/bin/bash
 
 "*****************************************************************************
 "" Visual Settigns
@@ -193,9 +188,9 @@ set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\ %{fugitive#sta
 
 let g:airline_theme = 'powerlineish'
 let g:airline_enable_branch = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '|'
 
 "*****************************************************************************
 "" Abbreviations
@@ -320,9 +315,9 @@ let g:airline_enable_syntastic = 1
 nnoremap <leader>:call TrimWhiteSpace()<cr>:let @/=''<CR>
 
 "" Copy/Paste/Cut
-noremap YY "+y<CR>
-noremap P "+gP<CR>
-noremap XX "+x<CR>
+" noremap YY "+y<CR>
+" noremap P "+gP<CR>
+" noremap XX "+x<CR>
 
 " pbcopy for OSX copy/paste
 " vmap <C-x> :!pbcopy<CR>
