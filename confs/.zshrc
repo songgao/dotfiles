@@ -71,8 +71,8 @@ LS_CMD="ls"
 
 if [[ $(uname) == 'Darwin' ]]
 then
-    alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
-    export EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim'
+    alias vim=/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/MacOS/Vim
+    export EDITOR='/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/MacOS/Vim'
     LS_CMD="gls"
     alias diff="colordiff"
 fi

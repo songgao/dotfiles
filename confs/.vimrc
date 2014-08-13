@@ -137,7 +137,7 @@ set number
 
 let no_buffers_menu=1
 highlight BadWhitespace ctermbg=red guibg=red
-colorscheme tomorrow-night
+colorscheme Tomorrow-Night
 
 set mousemodel=popup
 set t_Co=256
