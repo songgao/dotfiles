@@ -67,13 +67,20 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+function git_prompt_info() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+}
+
 LS_CMD="ls"
+REALPATH_CMD="realpath"
 
 if [[ $(uname) == 'Darwin' ]]
 then
     alias vim=/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/MacOS/Vim
     export EDITOR='/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/MacOS/Vim'
     LS_CMD="gls"
+    REALPATH_CMD="grealpath"
     alias diff="colordiff"
 fi
 
@@ -91,10 +98,11 @@ export PATH=$HOME/repo/luvit/build/:$PATH
 
 export GOROOT=$HOME/go
 export PATH=$GOROOT/bin:$PATH
+export PATH=$PATH:/usr/local/share/npm/bin/
 
 export OLD_PATH=$PATH
 set_gopath() {
-  export GOPATH=$(grealpath $1)
+  export GOPATH=$($REALPATH_CMD $1)
   export GOBIN=$GOPATH/bin
   export PATH=$GOBIN:$OLD_PATH
   if which colorgo &> /dev/null
