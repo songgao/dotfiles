@@ -30,56 +30,37 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'vim-scripts/grep.vim'
 NeoBundle 'Shougo/neocomplete.vim'
-
-"" Snippets
-NeoBundle "MarcWeber/vim-addon-mw-utils"
-NeoBundle "tomtom/tlib_vim"
-NeoBundle "honza/vim-snippets"
-NeoBundle 'garbas/vim-snipmate'
-NeoBundle 'SirVer/ultisnips'
+NeoBundle "Shougo/echodoc.vim"
+NeoBundle "scrooloose/syntastic"
+NeoBundle "majutsushi/tagbar"
 
 "" Color
 NeoBundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 
-
-"" Custom bundles
-
 "" Go Lang Bundle
-NeoBundle "majutsushi/tagbar"
 NeoBundle "fatih/vim-go"
-
-
-NeoBundle "scrooloose/syntastic"
-NeoBundle "majutsushi/tagbar"
-
-
-NeoBundle 'vim-scripts/c.vim'
-
 
 "" HTML Bundle
 NeoBundle 'amirh/HTML-AutoCloseTag'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'gorodinskiy/vim-coloresque'
 NeoBundle 'tpope/vim-haml'
-
+NeoBundle 'mustache/vim-mustache-handlebars'
 
 call neobundle#end()
-
-" Required:
-filetype plugin indent on
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 
-"*****************************************************************************
-"" Basic Setup
-"*****************************************************************************"
+let g:mustache_abbreviations = 1
+
+filetype plugin indent on
+
 "" Encoding
 set encoding=utf-8
 set fileencoding=utf-8
@@ -104,6 +85,15 @@ set smarttab
 set softtabstop=2
 set autoindent
 
+
+set showmatch
+set autowrite
+set mouse=a
+set undofile
+set colorcolumn=80
+set omnifunc=syntaxcomplete#Complete
+
+
 "" Map leader to ,
 let mapleader=','
 
@@ -124,7 +114,6 @@ set nobackup
 set noswapfile
 
 set fileformats=unix,dos,mac
-set backspace=indent,eol,start
 set showcmd
 set shell=/bin/bash
 
@@ -147,7 +136,6 @@ set gfn=Monospace\ 8
 
 if has("gui_running")
   if has("gui_mac") || has("gui_macvim")
-    set guifont=Menlo:h12
     set transparency=7
   endif
 else
@@ -173,9 +161,6 @@ set scrolloff=3
 "" Status bar
 set laststatus=2
 
-"" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
 "" Use modeline overrides
 set modeline
 set modelines=10
@@ -191,19 +176,6 @@ let g:airline_enable_branch = 1
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#left_sep = ' '
 " let g:airline#extensions#tabline#left_alt_sep = '|'
-
-"*****************************************************************************
-"" Abbreviations
-"*****************************************************************************
-"" no one is really happy until you have this shortcuts
-cab W! w!
-cab Q! q!
-cab Wq wq
-cab Wa wa
-cab wQ wq
-cab WQ wq
-cab W w
-cab Q q
 
 "" NERDTree configuration
 let NERDTreeChDirMode=2
@@ -258,13 +230,6 @@ endif
 
 set autoread
 
-"*****************************************************************************
-"" Mappings
-"*****************************************************************************
-"" Split
-noremap <Leader>h :split<CR>
-noremap <Leader>v :vsplit<CR>
-
 "" Git
 noremap <Leader>ga :!git add .<CR>
 noremap <Leader>gc :!git commit -m '<C-R>="'"<CR>
@@ -274,31 +239,6 @@ noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
 
-"" Tabs
-nmap <Tab> gt
-nmap <S-Tab> gT
-nnoremap <silent> <S-t> :tabnew<CR>
-
-"" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>
-
-"" Opens an edit command with the path of the currently edited file filled in
-noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-"" Opens a tab edit command with the path of the currently edited file filled
-noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
-"" ctrlp.vim
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,.pyc,__pycache__
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|tox)$'
-let g:ctrlp_user_command = "find %s -type f | grep -Ev '"+ g:ctrlp_custom_ignore +"'"
-let g:ctrlp_use_caching = 0
-cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-noremap <leader>b :CtrlPBuffer<CR>
-let g:ctrlp_map = ',e'
-let g:ctrlp_open_new_file = 'r'
-
 " syntastic
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_error_symbol='✗'
@@ -307,39 +247,13 @@ let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_aggregate_errors = 1
+let g:syntastic_mode_map = { "mode": "passive", "active_filetype": ["go"] }
 
 " vim-airline
 let g:airline_enable_syntastic = 1
 
 "" Remove trailing whitespace on <leader>S
 nnoremap <leader>:call TrimWhiteSpace()<cr>:let @/=''<CR>
-
-"" Copy/Paste/Cut
-" noremap YY "+y<CR>
-" noremap P "+gP<CR>
-" noremap XX "+x<CR>
-
-" pbcopy for OSX copy/paste
-" vmap <C-x> :!pbcopy<CR>
-" vmap <C-c> :w !pbcopy<CR><CR>
-
-"" Buffer nav
-nmap <C-p> :bp<CR>
-nmap <C-o> :bn<CR>
-noremap ,z :bp<CR>
-noremap ,q :bp<CR>
-noremap ,x :bn<CR>
-noremap ,w :bn<CR>
-
-"" Close buffer
-noremap ,c :bd<CR>
-
-"" Clean search (highlight)
-nnoremap <silent> <leader><space> :noh<cr>
-
-"" Vmap for maintain Visual Mode after shifting > and <
-vmap < <gv
-vmap > >gv
 
 "" Open current line on GitHub
 noremap ,o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
@@ -361,39 +275,26 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
     \ }
 
-
-" Tagbar
-nmap <silent> <F4> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-
-
-" Tagbar
-nmap <silent> <F4> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-
-
-
-
 let g:javascript_enable_domhtmlcss = 1
 
-
-"" Include user's local vim config
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
-
-
-
-set showmatch
-set autowrite
-set mouse=a
-set undofile
-set colorcolumn=80
-set omnifunc=syntaxcomplete#Complete
-
+let g:echodoc_enable_at_startup = 1
+set cmdheight=2
+set completeopt=longest,menuone
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplete#enable_smart_case = 1"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+let g:neocomplete#enable_smart_case = 1 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+let g:neocomplete_enable_auto_close_preview = 0
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 
 au FileType go nmap <Leader>i <Plug>(go-info)
+au BufRead,BufNewFile .followup,.article,.letter,/tmp/pico*,nn.*,snd.*,/tmp/mutt* :set ft=mail 
