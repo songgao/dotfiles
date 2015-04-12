@@ -52,13 +52,13 @@ def show_list():
 
 def _bak(conf):
     cwd = os.getcwd()
-    bakdir = cwd + '/bak'
+    bakdir = os.path.join(cwd, 'bak')
     if not os.path.exists(bakdir):
         os.mkdir(bakdir)
     print 'Moving old files into ./bak/ (if there\'re any):'
     for entry in confs[conf]:
         if os.path.exists(entry[2]):
-            bakname = bakdir + '/' + entry[1] + '.'
+            bakname = os.path.join(bakdir, entry[1] + '.')
             index = 0
             while os.path.exists(bakname + str(index)):
                 index = index + 1
@@ -68,17 +68,19 @@ def _bak(conf):
 def install(argv):
     print
     cwd = os.getcwd()
-    conf_dir = cwd + '/confs'
+    conf_dir = os.path.join(cwd, 'confs')
     for conf in argv:
         print '*', conf
         bak_hist = _bak(conf)
         print 'Installing', conf
         for entry in confs[conf]:
+            src = os.path.join(conf_dir, entry[1])
+            dst = entry[2]
             if entry[0] == 'f':
-                shutil.copy(conf_dir + '/' + entry[1], entry[2])
+                shutil.copy(src, dst)
             elif entry[0] == 'd':
-                shutil.copytree(conf_dir + '/' + entry[1], entry[2])
-            print conf_dir + '/' + entry[1], '-->', entry[2]
+                shutil.copytree(src, dst)
+            print src, '-->', dst
         print
 
 def main():

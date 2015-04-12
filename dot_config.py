@@ -4,18 +4,19 @@ HOME = os.getenv("HOME")
 
 confs = {
         'tmux': [
-            ('f', '.tmux.conf', HOME + '/.tmux.conf'),
-            ('d', '.tmux', HOME + '/.tmux'),
+            ('f', '.tmux.conf', os.path.join(HOME, '.tmux.conf')),
+            ('d', '.tmux', os.path.join(HOME, '.tmux')),
             ],
         'vim': [
-            ('f', '.vimrc', HOME + '/.vimrc'),
+            ('f', '.vimrc', os.path.join(HOME, '.vimrc')),
+            ('f', '.ycm_extra_conf.py', os.path.join(HOME, '.ycm_extra_conf.py')),
             ],
         'git': [
-            ('f', '.gitconfig', HOME + '/.gitconfig'),
-            ('f', '.gitignore_global', HOME + '/.gitignore_global')
+            ('f', '.gitconfig', os.path.join(HOME, '.gitconfig')),
+            ('f', '.gitignore_global', os.path.join(HOME, '.gitignore_global')),
             ],
         'zsh': [
-            ('f', '.zshrc', HOME + '/.zshrc'),
-            ('d', '.oh-my-zsh', HOME + '/.oh-my-zsh'),
+            ('f', '.zshrc', os.path.join(HOME, '.zshrc')),
+            ('d', '.oh-my-zsh', os.path.join(HOME, '.oh-my-zsh')),
             ],
         }

@@ -51,7 +51,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
@@ -77,8 +77,8 @@ REALPATH_CMD="realpath"
 
 if [[ $(uname) == 'Darwin' ]]
 then
-    alias vim=/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/MacOS/Vim
-    export EDITOR='/usr/local/Cellar/macvim/7.4-73/MacVim.app/Contents/MacOS/Vim'
+    alias vim=/usr/local/Cellar/macvim/7.4-74/MacVim.app/Contents/MacOS/Vim
+    export EDITOR='/usr/local/Cellar/macvim/7.4-74/MacVim.app/Contents/MacOS/Vim'
     LS_CMD="gls"
     REALPATH_CMD="grealpath"
     alias diff="colordiff"
@@ -93,12 +93,14 @@ alias sl="sl -a"
 alias gf="gofmt -s -w -e -l"
 alias ssh_nocheck="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
+alias py2="source $HOME/envs/python2/bin/activate"
+alias py3="source $HOME/envs/python3/bin/activate"
+
 export PATH=/usr/texbin:$PATH
-export PATH=$HOME/repo/luvit/build/:$PATH
 
 export GOROOT=$HOME/go
 export PATH=$GOROOT/bin:$PATH
-export PATH=$PATH:/usr/local/share/npm/bin/
+export PATH=$PATH:/usr/local/share/npm/bin
 
 export OLD_PATH=$PATH
 set_gopath() {

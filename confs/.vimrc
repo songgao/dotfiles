@@ -33,10 +33,15 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'vim-scripts/grep.vim'
-NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle "Shougo/echodoc.vim"
 NeoBundle "scrooloose/syntastic"
 NeoBundle "majutsushi/tagbar"
+NeoBundle 'Valloric/YouCompleteMe', {
+     \ 'build' : {
+     \     'mac' : './install.sh --clang-completer --system-libclang',
+     \     'unix' : './install.sh --clang-completer --system-libclang',
+     \    }
+     \ }
 
 "" Color
 NeoBundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
@@ -48,16 +53,12 @@ NeoBundle "fatih/vim-go"
 NeoBundle 'amirh/HTML-AutoCloseTag'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'gorodinskiy/vim-coloresque'
-NeoBundle 'tpope/vim-haml'
-NeoBundle 'mustache/vim-mustache-handlebars'
 
 call neobundle#end()
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 NeoBundleCheck
-
-let g:mustache_abbreviations = 1
 
 filetype plugin indent on
 
@@ -177,6 +178,9 @@ let g:airline_enable_branch = 1
 " let g:airline#extensions#tabline#left_sep = ' '
 " let g:airline#extensions#tabline#left_alt_sep = '|'
 
+"" YCM Configurations
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+
 "" NERDTree configuration
 let NERDTreeChDirMode=2
 let NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
@@ -247,7 +251,7 @@ let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_aggregate_errors = 1
-let g:syntastic_mode_map = { "mode": "passive", "active_filetype": ["go"] }
+let g:syntastic_mode_map = { "mode": "passive", "active_filetype": ["go", "c", "c++"] }
 
 " vim-airline
 let g:airline_enable_syntastic = 1
@@ -280,18 +284,6 @@ let g:javascript_enable_domhtmlcss = 1
 let g:echodoc_enable_at_startup = 1
 set cmdheight=2
 set completeopt=longest,menuone
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-let g:neocomplete_enable_auto_close_preview = 0
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
