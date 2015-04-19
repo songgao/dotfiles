@@ -115,3 +115,8 @@ set_gopath() {
   fi
 }
 set_gopath $HOME/gopath
+
+if [ -f $HOME/.rc ]
+then
+  . $HOME/.rc
+fi
