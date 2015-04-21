@@ -77,8 +77,7 @@ REALPATH_CMD="realpath"
 
 if [[ $(uname) == 'Darwin' ]]
 then
-    alias vim=/usr/local/Cellar/macvim/7.4-74/MacVim.app/Contents/MacOS/Vim
-    export EDITOR='/usr/local/Cellar/macvim/7.4-74/MacVim.app/Contents/MacOS/Vim'
+    export EDITOR="/usr/local/bin/vim"
     LS_CMD="gls"
     REALPATH_CMD="grealpath"
     alias diff="colordiff"
