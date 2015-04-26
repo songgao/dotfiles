@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="af-magic"
+ZSH_THEME="avit"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -15,7 +15,7 @@ ZSH_THEME="af-magic"
 # CASE_SENSITIVE="true"
 
 # Uncomment this to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how often before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13
@@ -35,7 +35,7 @@ ZSH_THEME="af-magic"
 # Uncomment following line if you want to disable marking untracked files under
 # VCS as dirty. This makes repository status check for large repositories much,
 # much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment following line if you want to  shown in the command execution time stamp 
 # in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
@@ -45,77 +45,39 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git virtualenv rvm)
+plugins=(git pyenv)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-function git_prompt_info() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
-}
-
-LS_CMD="ls"
-REALPATH_CMD="realpath"
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/texbin:$PATH
 
 if [[ $(uname) == 'Darwin' ]]
 then
-    export EDITOR="/usr/local/bin/vim"
-    LS_CMD="gls"
-    REALPATH_CMD="grealpath"
-    alias diff="colordiff"
+    # GNU coreutils
+    PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+    # node.js / io.js
+    export PATH=$PATH:/usr/local/share/npm/bin
 fi
 
-alias ls="$LS_CMD --color=always -hl --time-style=long-iso"
+export EDITOR="vim"
+alias ls="ls --color=always -hl --time-style=long-iso"
 alias less="less -R"
 alias grep="grep --color=always"
-alias go="colorgo"
 
-alias sl="sl -a"
-alias gf="gofmt -s -w -e -l"
-alias ssh_nocheck="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-
+# Python
 alias py2="source $HOME/envs/python2/bin/activate"
 alias py3="source $HOME/envs/python3/bin/activate"
 
-export PATH=/usr/texbin:$PATH
-
+# Go
 export GOROOT=$HOME/go
-export PATH=$GOROOT/bin:$PATH
-export PATH=$PATH:/usr/local/share/npm/bin
+export GOPATH=$HOME/gopath
+export GOBIN=$GOPATH/bin
+export PATH=$GOROOT/bin:$GOBIN:$PATH
+alias gf="gofmt -s -w -e -l"
+if which colorgo &> /dev/null; then alias go="colorgo"; fi
 
-export OLD_PATH=$PATH
-set_gopath() {
-  export GOPATH=$($REALPATH_CMD $1)
-  export GOBIN=$GOPATH/bin
-  export PATH=$GOBIN:$OLD_PATH
-  if which colorgo &> /dev/null
-  then
-    alias go="colorgo"
-  else
-    unalias go
-  fi
-}
-set_gopath $HOME/gopath
-
-if [ -f $HOME/.rc ]
-then
-  . $HOME/.rc
-fi
+if [ -f $HOME/.rc ]; then . $HOME/.rc; fi
