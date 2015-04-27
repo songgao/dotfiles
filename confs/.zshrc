@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="avit"
+ZSH_THEME="miloshadzic"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -63,8 +63,14 @@ then
     export PATH=$PATH:/usr/local/share/npm/bin
 fi
 
+if [[ $(uname) == 'FreeBSD' ]]
+then
+  alias ls="ls -Ghl"
+else
+  alias ls="ls --color=always -hl --time-style=long-iso"
+fi
+
 export EDITOR="vim"
-alias ls="ls --color=always -hl --time-style=long-iso"
 alias less="less -R"
 alias grep="grep --color=always"
 
