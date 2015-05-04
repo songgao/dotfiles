@@ -5,7 +5,6 @@ HOME = os.getenv("HOME")
 confs = {
         'tmux': [
             ('f', '.tmux.conf', os.path.join(HOME, '.tmux.conf')),
-            ('d', '.tmux', os.path.join(HOME, '.tmux')),
             ],
         'vim': [
             ('f', '.vimrc', os.path.join(HOME, '.vimrc')),
