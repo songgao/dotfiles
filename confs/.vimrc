@@ -36,6 +36,7 @@ NeoBundle 'vim-scripts/grep.vim'
 NeoBundle "Shougo/echodoc.vim"
 NeoBundle "scrooloose/syntastic"
 NeoBundle "majutsushi/tagbar"
+NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'Valloric/YouCompleteMe', {
      \ 'build' : {
      \     'mac' : './install.sh --clang-completer --system-libclang',
