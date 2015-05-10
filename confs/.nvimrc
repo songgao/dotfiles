@@ -33,6 +33,11 @@ set autowrite
 set mouse=a
 set undofile
 set omnifunc=syntaxcomplete#Complete
+set backspace=indent,eol,start
+
+set ttimeout
+set ttimeoutlen=0
+set matchtime=0
 
 " Searching
 set hlsearch
