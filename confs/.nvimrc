@@ -14,6 +14,8 @@ Plug 'fatih/vim-go'
 Plug 'amirh/HTML-AutoCloseTag'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'bling/vim-bufferline'
 
 call plug#end()
 
@@ -71,3 +73,9 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+" NERD Tree
+noremap <F3> :NERDTreeToggle<CR>
+
+" TagBar
+nmap <silent> <F4> :TagbarToggle<CR>
