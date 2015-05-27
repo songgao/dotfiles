@@ -36,6 +36,7 @@ NeoBundle 'vim-scripts/grep.vim'
 NeoBundle "Shougo/echodoc.vim"
 NeoBundle "scrooloose/syntastic"
 NeoBundle "majutsushi/tagbar"
+NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'Valloric/YouCompleteMe', {
      \ 'build' : {
      \     'mac' : './install.sh --clang-completer --system-libclang',
@@ -172,11 +173,14 @@ set titlestring=%F
 
 set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\ %{fugitive#statusline()}
 
+" vim-airline
 let g:airline_theme = 'powerlineish'
-let g:airline_enable_branch = 1
+let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#left_sep = ' '
 " let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#branch#enabled = 1
 
 "" YCM Configurations
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
@@ -253,8 +257,6 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_mode_map = { "mode": "passive", "active_filetype": ["go", "c", "c++"] }
 
-" vim-airline
-let g:airline_enable_syntastic = 1
 
 "" Remove trailing whitespace on <leader>S
 nnoremap <leader>:call TrimWhiteSpace()<cr>:let @/=''<CR>

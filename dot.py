@@ -63,7 +63,10 @@ def _bak(conf):
             while os.path.exists(bakname + str(index)):
                 index = index + 1
             print entry[2], '-->', bakname + str(index)
-            shutil.move(entry[2], bakname + str(index))
+            dst = bakname + str(index)
+            if not os.path.exists(os.path.dirname(dst)):
+                os.makedirs(os.path.dirname(dst))
+            shutil.move(entry[2], dst)
 
 def install(argv):
     print
@@ -77,6 +80,8 @@ def install(argv):
             src = os.path.join(conf_dir, entry[1])
             dst = entry[2]
             if entry[0] == 'f':
+                if not os.path.exists(os.path.dirname(dst)):
+                    os.makedirs(os.path.dirname(dst))
                 shutil.copy(src, dst)
             elif entry[0] == 'd':
                 shutil.copytree(src, dst)
