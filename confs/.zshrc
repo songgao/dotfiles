@@ -67,7 +67,7 @@ if [[ $(uname) == 'FreeBSD' ]]
 then
   alias ls="ls -Ghl"
 else
-  alias ls="ls --color=always -hl --time-style=long-iso"
+  alias ls="ls --color=always -hl --time-style=long-iso --group-directories-first"
 fi
 
 export EDITOR="vim"
