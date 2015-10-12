@@ -1,2 +1,3 @@
 cd $(dirname $0)
-cat config.json | jq -r ".$1"'[] | "mkdir -p $(dirname $HOME/" + .home_path + ") && ln -sni '"$PWD"'/confs/"+.confs_path + " $HOME/" + .home_path'
+echo 'cd $(dirname $0)'
+cat config.json | jq -r ".$1"'[] | "mkdir -p $(dirname $HOME/" + .home_path + ") && ln -sni $PWD/confs/"+.confs_path + " $HOME/" + .home_path'
