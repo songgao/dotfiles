@@ -1,0 +1,2 @@
+mkdir -p $(dirname $HOME/.gitconfig) && ln -sni /Users/songgao/repo/dot/confs/.gitconfig $HOME/.gitconfig
+mkdir -p $(dirname $HOME/.gitignore_global) && ln -sni /Users/songgao/repo/dot/confs/.gitignore_global $HOME/.gitignore_global

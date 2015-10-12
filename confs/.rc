@@ -1,0 +1,47 @@
+# Prezto aliases `rm` to `rm -i`. This un-does it.
+unalias rm
+
+export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/texlive/2015/bin/x86_64-darwin/:$PATH
+
+if [[ $(uname) == 'Darwin' ]]
+then
+    # GNU coreutils
+    PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+fi
+
+if [[ $(uname) == 'FreeBSD' ]]
+then
+  alias ls="ls -Ghl"
+else
+  alias ls="ls --color=always -hl --time-style=long-iso --group-directories-first"
+fi
+
+alias less="less -R"
+alias grep="grep --color=always"
+
+# Python
+if [ -f $HOME/envs/python2/bin/activate ]; then
+  alias py2="source $HOME/envs/python2/bin/activate"
+fi
+if [ -f $HOME/envs/python3/bin/activate ]; then
+  alias py3="source $HOME/envs/python3/bin/activate"
+fi
+
+# Go
+export GOROOT=$HOME/go
+export GOPATH=$HOME/gopath
+export GOBIN=$GOPATH/bin
+export PATH=$GOROOT/bin:$GOBIN:$PATH
+alias gf="gofmt -s -w -e -l"
+if which colorgo &> /dev/null; then alias go="colorgo"; fi
+
+# Editors
+export VISUAL="nvim"
+export EDITOR="$VISUAL"
+alias vim=nvim
+
+
+if [ -f $HOME/.rc.local ]; then
+  source $HOME/.rc.local
+fi

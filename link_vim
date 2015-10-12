@@ -1,0 +1,2 @@
+mkdir -p $(dirname $HOME/.vimrc) && ln -sni /Users/songgao/repo/dot/confs/.vimrc $HOME/.vimrc
+mkdir -p $(dirname $HOME/.ycm_extra_conf.py) && ln -sni /Users/songgao/repo/dot/confs/.ycm_extra_conf.py $HOME/.ycm_extra_conf.py

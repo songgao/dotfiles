@@ -21,6 +21,7 @@
     { "confs_path": ".zprezto/runcoms/zpreztorc", "home_path": ".zpreztorc" },
     { "confs_path": ".zprezto/runcoms/zprofile", "home_path": ".zprofile" },
     { "confs_path": ".zprezto/runcoms/zshenv", "home_path": ".zshenv" },
-    { "confs_path": ".zprezto/runcoms/zshrc", "home_path": ".zshrc" }
+    { "confs_path": ".zprezto/runcoms/zshrc", "home_path": ".zshrc" },
+    { "confs_path": ".rc", "home_path": ".rc" }
   ]
 }
