@@ -1,0 +1,2 @@
+mkdir -p $(dirname $HOME/.nvimrc) && ln -si /Users/songgao/repo/dot/confs/.nvimrc $HOME/.nvimrc
+mkdir -p $(dirname $HOME/.nvim/autoload/plug.vim) && ln -si /Users/songgao/repo/dot/confs/.nvim/autoload/plug.vim $HOME/.nvim/autoload/plug.vim

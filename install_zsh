@@ -1,0 +1,7 @@
+mkdir -p $(dirname $HOME/.zprezto) && ln -si /Users/songgao/repo/dot/confs/.zprezto $HOME/.zprezto
+mkdir -p $(dirname $HOME/.zlogin) && ln -si /Users/songgao/repo/dot/confs/.zprezto/runcoms/zlogin $HOME/.zlogin
+mkdir -p $(dirname $HOME/.zlogout) && ln -si /Users/songgao/repo/dot/confs/.zprezto/runcoms/zlogout $HOME/.zlogout
+mkdir -p $(dirname $HOME/.zpreztorc) && ln -si /Users/songgao/repo/dot/confs/.zprezto/runcoms/zpreztorc $HOME/.zpreztorc
+mkdir -p $(dirname $HOME/.zprofile) && ln -si /Users/songgao/repo/dot/confs/.zprezto/runcoms/zprofile $HOME/.zprofile
+mkdir -p $(dirname $HOME/.zshenv) && ln -si /Users/songgao/repo/dot/confs/.zprezto/runcoms/zshenv $HOME/.zshenv
+mkdir -p $(dirname $HOME/.zshrc) && ln -si /Users/songgao/repo/dot/confs/.zprezto/runcoms/zshrc $HOME/.zshrc
