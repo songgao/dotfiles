@@ -1,3 +1,3 @@
 cd $(dirname $0)
-mkdir -p $(dirname $HOME/.nvimrc) && ln -sni $PWD/confs/.nvimrc $HOME/.nvimrc
-mkdir -p $(dirname $HOME/.nvim/autoload/plug.vim) && ln -sni $PWD/confs/.nvim/autoload/plug.vim $HOME/.nvim/autoload/plug.vim
+mkdir -p $(dirname $HOME/.config/nvim/init.vim) && ln -sni $PWD/confs/.config/nvim/init.vim $HOME/.config/nvim/init.vim
+mkdir -p $(dirname $HOME/.config/nvim/autoload/plug.vim) && ln -sni $PWD/confs/.config/nvim/autoload/plug.vim $HOME/.config/nvim/autoload/plug.vim
