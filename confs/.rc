@@ -1,6 +1,9 @@
 # Prezto aliases `rm` to `rm -i`. This un-does it.
 unalias rm
 
+# allows interactive comments
+set -k
+
 export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/texlive/2015/bin/x86_64-darwin/:$PATH
 
 if [[ $(uname) == 'Darwin' ]]
