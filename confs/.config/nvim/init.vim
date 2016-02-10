@@ -3,7 +3,8 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
@@ -16,6 +17,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'bling/vim-bufferline'
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
@@ -58,7 +60,7 @@ set laststatus=2
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " vim-airline
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'tomorrow'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -79,3 +81,9 @@ noremap <F3> :NERDTreeToggle<CR>
 
 " TagBar
 nmap <silent> <F4> :TagbarToggle<CR>
+
+" CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+
