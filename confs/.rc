@@ -39,6 +39,24 @@ export PATH=$GOROOT/bin:$GOBIN:$PATH
 alias gf="gofmt -s -w -e -l"
 if which colorgo &> /dev/null; then alias go="colorgo"; fi
 
+gprefresh() {
+  go list -f "{{.Dir}}" ... 2>/dev/null > $GOPATH/.list;
+}
+_gpcd() {
+  if [ "$#" -eq 1 ]; then
+    cd $1
+  else
+    select p in $@; do
+      _gpcd $p
+      unset p
+      break
+    done
+  fi
+}
+gpcd() {
+  _gpcd $(echo $(grep --color=never '/'$1'$' "$GOPATH/.list"))
+}
+
 # Editors
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
