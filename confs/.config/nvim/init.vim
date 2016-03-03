@@ -18,8 +18,11 @@ Plug 'gorodinskiy/vim-coloresque'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'bling/vim-bufferline'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'rizzatti/dash.vim'
 
 call plug#end()
+
+let mapleader="`"
 
 "" Tabs
 set tabstop=2
@@ -73,8 +76,18 @@ let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_auto_type_info=1
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+
+" Dash
+:nmap <silent> <leader>d <Plug>DashSearch
+
 
 " NERD Tree
 noremap <F3> :NERDTreeToggle<CR>
