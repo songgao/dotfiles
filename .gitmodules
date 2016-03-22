@@ -1,9 +1,3 @@
-[submodule "confs/.vim/bundle/neobundle.vim"]
-	path = confs/.vim/bundle/neobundle.vim
-	url = git://github.com/Shougo/neobundle.vim
-[submodule "confs/.oh-my-zsh"]
-	path = confs/.oh-my-zsh
-	url = git://github.com/robbyrussell/oh-my-zsh.git
 [submodule "confs/.zprezto"]
 	path = confs/.zprezto
-	url = git@github.com:songgao/prezto.git
+	url = https://github.com/songgao/prezto.git
