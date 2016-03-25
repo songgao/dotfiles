@@ -5,23 +5,22 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'eikenb/acp' " autocomplpop
-Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plug 'flazz/vim-colorschemes'
 Plug 'fatih/vim-go'
 Plug 'amirh/HTML-AutoCloseTag'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
-Plug 'jeetsukumaran/vim-buffergator'
-Plug 'bling/vim-bufferline'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rizzatti/dash.vim'
-Plug 'mkitt/tabline.vim' " for numbered tabs
 
 " Plug 'Valloric/YouCompleteMe'
-" Plug 'tpope/vim-fugitive'
+" Plug 'jeetsukumaran/vim-buffergator'
+" Plug 'bling/vim-bufferline'
 
 call plug#end()
 
@@ -69,15 +68,21 @@ set colorcolumn=80
 set showmatch
 set ruler
 set number
-colorscheme Tomorrow-Night
+colorscheme hybrid_material
 set laststatus=2
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " vim-airline
 let g:airline_theme = 'tomorrow'
-let g:airline_powerline_fonts = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
+let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#tab_min_count = 2
+
 
 " YCM Configurations
 " let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
@@ -92,7 +97,8 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 let g:go_auto_type_info=1
 au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+au FileType go nmap <Leader>gb <Plug>(go-build)
+au FileType go nmap <Leader>gt <Plug>(go-test)
 
 " syntastic for Go
 let g:syntastic_go_checkers = ['go', 'errcheck', 'golint', 'govet']
@@ -104,7 +110,6 @@ let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['go'] }
 
 " NERD Tree
 noremap <F3> :NERDTreeToggle<CR>
-autocmd BufWinEnter * NERDTreeMirror
 
 " TagBar
 nmap <silent> <F4> :TagbarToggle<CR>
