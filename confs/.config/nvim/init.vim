@@ -42,8 +42,16 @@ filetype indent on
 set autowrite
 set mouse=a
 set undofile
-set omnifunc=syntaxcomplete#Complete
 set backspace=indent,eol,start
+set omnifunc=syntaxcomplete#Complete
+
+" key binding: Ctrl-N for moving cursor in auto-complete list
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+" key bindings: Shift-H and Shift-L for navigating tabs
+nnoremap H gT
+nnoremap L gt
 
 set ttimeout
 set ttimeoutlen=0
