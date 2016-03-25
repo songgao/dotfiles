@@ -18,6 +18,7 @@ Plug 'jeetsukumaran/vim-buffergator'
 Plug 'bling/vim-bufferline'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rizzatti/dash.vim'
+Plug 'mkitt/tabline.vim' " for numbered tabs
 
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'tpope/vim-fugitive'
@@ -95,6 +96,7 @@ let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['go'] }
 
 " NERD Tree
 noremap <F3> :NERDTreeToggle<CR>
+autocmd BufWinEnter * NERDTreeMirror
 
 " TagBar
 nmap <silent> <F4> :TagbarToggle<CR>
