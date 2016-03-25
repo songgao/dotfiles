@@ -122,6 +122,7 @@ let g:ctrlp_working_path_mode = 'ra'
 " autocomplpop
 let g:acp_completeoptPreview = 1
 let g:acp_behaviorGoOmniLength = 0
+let g:acp_behaviorPythonOmniLength = -1
 
 tnoremap <Esc> <C-\><C-n>
 
