@@ -126,9 +126,11 @@ let g:acp_behaviorPythonOmniLength = -1
 au TermOpen * call acp#disable()
 au TermClose * call acp#enable()
 
+" neovim Terminal
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
+:au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 
