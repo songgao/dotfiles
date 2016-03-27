@@ -123,6 +123,8 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:acp_completeoptPreview = 1
 let g:acp_behaviorGoOmniLength = 0
 let g:acp_behaviorPythonOmniLength = -1
+au TermOpen * call acp#disable()
+au TermClose * call acp#enable()
 
 tnoremap <Esc> <C-\><C-n>
 
