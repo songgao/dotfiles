@@ -131,5 +131,5 @@ tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
 :au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-:au BufEnter * if &buftype == 'terminal' | :call acp#disable() | else | :call acp#enable() | endif
+:au BufEnter,TermOpen,TermClose * if &buftype == 'terminal' | :call acp#disable() | else | :call acp#enable() | endif
 
