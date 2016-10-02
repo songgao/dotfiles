@@ -9,7 +9,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'eikenb/acp' " autocomplpop
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 Plug 'flazz/vim-colorschemes'
 Plug 'fatih/vim-go'
 Plug 'amirh/HTML-AutoCloseTag'
@@ -17,6 +18,10 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rizzatti/dash.vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'noc7c9/vim-iced-coffee-script'
+Plug 'dln/avro-vim'
+Plug 'rking/ag.vim'
 
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'jeetsukumaran/vim-buffergator'
@@ -83,10 +88,6 @@ let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#tab_min_count = 2
 
-
-" YCM Configurations
-" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-
 " vim-go
 let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
@@ -95,15 +96,24 @@ let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-let g:go_auto_type_info=1
+" let g:go_auto_type_info=1
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gb <Plug>(go-build)
 au FileType go nmap <Leader>gt <Plug>(go-test)
 
 " syntastic for Go
-let g:syntastic_go_checkers = ['go', 'errcheck', 'golint', 'govet']
+" let g:syntastic_go_checkers = ['go', 'errcheck', 'golint', 'govet']
+let g:syntastic_go_checkers = ['errcheck', 'golint', 'govet']
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['go'] }
+
+" deoplete-go
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#go#gocode_binary = '/home/songgao/gopath/bin/gocode'
+let g:deoplete#sources#go#package_dot = 1
+let g:deoplete#sources#go#sort_class = ['func', 'var', 'const', 'type', 'package']
+let g:deoplete#sources#go#pointer = 1
+set completeopt+=noselect
 
 " Dash
 :nmap <silent> <leader>d <Plug>DashSearch
@@ -119,11 +129,6 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 
-" autocomplpop
-let g:acp_completeoptPreview = 1
-let g:acp_behaviorGoOmniLength = 0
-let g:acp_behaviorPythonOmniLength = -1
-
 " neovim Terminal
 tnoremap <Esc> <C-\><C-n>
 tnoremap <C-h> <C-\><C-n><C-w>h
@@ -131,5 +136,7 @@ tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
 :au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-:au BufEnter,TermOpen,TermClose * if &buftype == 'terminal' | :call acp#disable() | else | :call acp#enable() | endif
+" :au BufEnter,TermOpen,TermClose * if &buftype == 'terminal' | :call acp#disable() | else | :call acp#enable() | endif
 
+" *.avdl
+au BufRead,BufNewFile *.avdl setlocal filetype=avro-idl
