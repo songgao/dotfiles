@@ -21,7 +21,7 @@ Plug 'rizzatti/dash.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'noc7c9/vim-iced-coffee-script'
 Plug 'dln/avro-vim'
-Plug 'rking/ag.vim'
+Plug 'mileszs/ack.vim'
 
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'jeetsukumaran/vim-buffergator'
@@ -140,3 +140,8 @@ tnoremap <C-l> <C-\><C-n><C-w>l
 
 " *.avdl
 au BufRead,BufNewFile *.avdl setlocal filetype=avro-idl
+
+" ack.vim
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif

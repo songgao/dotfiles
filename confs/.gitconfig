@@ -8,6 +8,7 @@
   pager = less -r
 [alias]
   co = checkout
+  cob = checkout -b
   ci = commit
   st = status
   br = branch
@@ -17,12 +18,16 @@
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [color]
   ui = true
-[credential]
-  helper = osxkeychain
 [push]
   default = nothing
 [http]
   cookiefile = /Users/songgao/.gitcookies
 [pager]
-	diff = diff-so-fancy | less --tabs=1,5 -RFX
+  # diff = diff-so-fancy | less --tabs=1,5 -RFX
 	show = diff-so-fancy | less --tabs=1,5 -RFX
+
+[merge]
+tool = mymeld
+conflictstyle = diff3
+[mergetool "mymeld"]
+cmd = meld $LOCAL $BASE $REMOTE -o $MERGED --diff $BASE $LOCAL --diff $BASE $REMOTE --auto-merge

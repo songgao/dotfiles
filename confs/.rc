@@ -32,7 +32,7 @@ if [ -f $HOME/envs/python3/bin/activate ]; then
 fi
 
 # Go
-export GOROOT=$HOME/go
+# export GOROOT=$HOME/go
 export GOPATH=$HOME/gopath
 export GOBIN=$GOPATH/bin
 export PATH=$GOROOT/bin:$GOBIN:$PATH
@@ -40,7 +40,7 @@ alias gf="gofmt -s -w -e -l"
 if which colorgo &> /dev/null; then alias go="colorgo"; fi
 
 gprefresh() {
-  go list -f "{{.Dir}}" ... 2>/dev/null > $GOPATH/.list;
+  go list -f "{{.Dir}}" ... 2>/dev/null | grep -v vendor > $GOPATH/.list;
 }
 _gpcd() {
   if [ "$#" -eq 1 ]; then
@@ -54,7 +54,27 @@ _gpcd() {
   fi
 }
 gpcd() {
-  _gpcd $(echo $(grep --color=never '/'$1'$' "$GOPATH/.list"))
+  _gpcd $(echo $(grep --color=never "/$1\$" "$GOPATH/.list"))
+}
+
+repodir() {
+    local old_pwd="$PWD"
+    local counter="."
+    while true; do
+        local cur_pwd="$(echo -n $(cd $counter && pwd))"
+        if [[ "$cur_pwd" == "/" ]]; then
+            echo "${PWD##*/}"
+            return 0
+        fi
+        for repo in "$cur_pwd/.git" "$cur_pwd/.hg"; do
+            if [[ -d "$repo" ]]; then
+                cur_pwd="$(echo -n $(cd ../$counter && pwd))"
+                echo "${old_pwd#$cur_pwd/}"
+                return 0
+            fi
+        done
+        counter="../$counter"
+    done
 }
 
 # Editors
@@ -65,6 +85,13 @@ alias vim=nvim
 # transfer.sh
 transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
 tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
+
+# neovim-remote
+if [ -n "${NVIM_LISTEN_ADDRESS+x}" ]; then
+  alias h='nvr -o'
+  alias v='nvr -O'
+  alias t='nvr --remote-tab'
+fi
 
 if [ -f $HOME/.rc.local ]; then
   source $HOME/.rc.local
