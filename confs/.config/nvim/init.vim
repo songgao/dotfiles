@@ -111,7 +111,7 @@ let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['go'] }
 
 " deoplete-go
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#go#gocode_binary = '/home/songgao/gopath/bin/gocode'
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 let g:deoplete#sources#go#package_dot = 1
 let g:deoplete#sources#go#sort_class = ['func', 'var', 'const', 'type', 'package']
 let g:deoplete#sources#go#pointer = 1
