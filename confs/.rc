@@ -32,7 +32,7 @@ if [ -f $HOME/envs/python3/bin/activate ]; then
 fi
 
 # Go
-# export GOROOT=$HOME/go
+export GOROOT=$HOME/go
 export GOPATH=$HOME/gopath
 export GOBIN=$GOPATH/bin
 export PATH=$GOROOT/bin:$GOBIN:$PATH

@@ -22,6 +22,8 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'noc7c9/vim-iced-coffee-script'
 Plug 'dln/avro-vim'
 Plug 'mileszs/ack.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'metakirby5/codi.vim'
 
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'jeetsukumaran/vim-buffergator'
@@ -135,8 +137,7 @@ tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
-:au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-" :au BufEnter,TermOpen,TermClose * if &buftype == 'terminal' | :call acp#disable() | else | :call acp#enable() | endif
+":au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 
 " *.avdl
 au BufRead,BufNewFile *.avdl setlocal filetype=avro-idl
