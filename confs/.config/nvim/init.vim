@@ -56,10 +56,6 @@ set omnifunc=syntaxcomplete#Complete
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
-" key bindings: Shift-H and Shift-L for navigating tabs
-nnoremap H gT
-nnoremap L gt
-
 set ttimeout
 set ttimeoutlen=0
 set matchtime=0
@@ -159,8 +155,17 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
+" key bindings: Shift-H and Shift-L for navigating tabs; Ctrl-t for new tab
+nnoremap H gT
+nnoremap L gt
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-t>     <Esc>:tabnew<CR>
+
+" key bindings: Ctrl-s/v for splits
+nnoremap <C-s>     :sp<CR>
+nnoremap <C-v>     :vsp<CR>
+
+
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-t>     <Esc>:tabnew<CR>
