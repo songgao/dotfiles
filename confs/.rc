@@ -96,3 +96,11 @@ fi
 if [ -f $HOME/.rc.local ]; then
   source $HOME/.rc.local
 fi
+
+if which keybase &> /dev/null; then alias kbc="keybase chat"; fi
+
+if [ -n "${NVIM_LISTEN_ADDRESS+x}" ]; then
+  alias h='nvr -o'
+  alias v='nvr -O'
+  alias t='nvr --remote-tab'
+fi
