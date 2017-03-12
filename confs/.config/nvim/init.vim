@@ -161,11 +161,8 @@ nnoremap L gt
 nnoremap <C-t>     :tabnew<CR>
 inoremap <C-t>     <Esc>:tabnew<CR>
 
-" key bindings: Ctrl-s/v for splits
-nnoremap <C-s>     :sp<CR>
-nnoremap <C-v>     :vsp<CR>
+nnoremap <C-q>     :Ttoggle<CR>
 
 
-map <ScrollWheelUp> <C-Y>
-map <ScrollWheelDown> <C-E>
-
+nnoremap <ScrollWheelUp> <C-Y>
+nnoremap <ScrollWheelDown> <C-E>
