@@ -4,3 +4,4 @@
 *.un~
 Session.vim
 .DS_Store
+.vscode

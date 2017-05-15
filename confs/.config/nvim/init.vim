@@ -26,20 +26,16 @@ Plug 'mileszs/ack.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'metakirby5/codi.vim'
 
-" Plug 'Valloric/YouCompleteMe'
-" Plug 'jeetsukumaran/vim-buffergator'
-" Plug 'bling/vim-bufferline'
-
 call plug#end()
 
 let mapleader="`"
 
 "" Tabs
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 set smarttab
-set softtabstop=2
+set softtabstop=4
 set autoindent
 
 filetype on
@@ -75,6 +71,11 @@ set number
 colorscheme hybrid_material
 set laststatus=2
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+" echodoc
+set noshowmode
+set cmdheight=2
+
 
 " vim-airline
 let g:airline_theme = 'tomorrow'
@@ -115,9 +116,6 @@ let g:deoplete#sources#go#sort_class = ['func', 'var', 'const', 'type', 'package
 let g:deoplete#sources#go#pointer = 1
 set completeopt+=noselect
 set completeopt-=preview
-
-" echodoc
-set noshowmode
 
 " gitgutter
 noremap <C-g> :GitGutterLineHighlightsToggle<CR>
@@ -166,3 +164,5 @@ nnoremap <C-q>     :Ttoggle<CR>
 
 nnoremap <ScrollWheelUp> <C-Y>
 nnoremap <ScrollWheelDown> <C-E>
+nnoremap <M-k> <C-y><C-y><C-y><C-y>
+nnoremap <M-j> <C-e><C-e><C-e><C-e>
