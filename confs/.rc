@@ -99,4 +99,9 @@ if [ -f $HOME/.rc.local ]; then
   source $HOME/.rc.local
 fi
 
+alias p8='ping 8.8.8.8'
 if which keybase &> /dev/null; then alias kbc="keybase chat"; fi
+zstyle ':completion:*' accept-exact-dirs true
+
+alias l='exa -l --time-style long-iso'
+alias t='exa -l --tree --time-style long-iso'

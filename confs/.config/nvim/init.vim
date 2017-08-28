@@ -38,6 +38,13 @@ set smarttab
 set softtabstop=4
 set autoindent
 
+autocmd Filetype ruby setlocal sts=2 ts=2 sw=2 expandtab
+autocmd Filetype ruby setlocal sts=2 ts=2 sw=2 expandtab
+
+" Tab highlights
+set list
+set listchars=tab:T>
+
 filetype on
 filetype plugin on
 filetype indent on
@@ -119,6 +126,7 @@ set completeopt-=preview
 
 " gitgutter
 noremap <C-g> :GitGutterLineHighlightsToggle<CR>
+let g:gitgutter_diff_args = '-w'
 
 " Dash
 :nmap <silent> <leader>d <Plug>DashSearch
