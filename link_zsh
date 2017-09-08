@@ -7,3 +7,4 @@ mkdir -p $(dirname $HOME/.zprofile) && ln -sni $PWD/confs/.zprezto/runcoms/zprof
 mkdir -p $(dirname $HOME/.zshenv) && ln -sni $PWD/confs/.zprezto/runcoms/zshenv $HOME/.zshenv
 mkdir -p $(dirname $HOME/.zshrc) && ln -sni $PWD/confs/.zprezto/runcoms/zshrc $HOME/.zshrc
 mkdir -p $(dirname $HOME/.rc) && ln -sni $PWD/confs/.rc $HOME/.rc
+mkdir -p $(dirname $HOME/.rc) && ln -sni $PWD/confs/.zsh-histdb $HOME/.zsh-histdb

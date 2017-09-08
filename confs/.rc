@@ -105,3 +105,10 @@ zstyle ':completion:*' accept-exact-dirs true
 
 alias l='exa -l --time-style long-iso'
 alias t='exa -l --tree --time-style long-iso'
+
+source $HOME/.zsh-histdb/sqlite-history.zsh
+source $HOME/.zsh-histdb/history-timer.zsh
+
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec _start_timer
+add-zsh-hook precmd  _stop_timer
