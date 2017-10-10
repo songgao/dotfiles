@@ -1,0 +1,2 @@
+cd $(dirname $0)
+mkdir -p $(dirname $HOME/.config/fish/config.fish) && ln -sni $PWD/confs/.config/fish/config.fish $HOME/.config/fish/config.fish
