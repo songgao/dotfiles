@@ -25,6 +25,10 @@ end
 set -x VISUAL "nvim"
 set -x EDITOR "$VISUAL"
 
+# exa
+alias l='exa -l --time-style long-iso'
+alias t='exa -l --tree --time-style long-iso'
+
 # powerline prompt
 if which powerline-go >/dev/null ^/dev/null
     function fish_prompt
