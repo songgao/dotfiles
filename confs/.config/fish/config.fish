@@ -1,4 +1,3 @@
-
 set -x PATH $HOME/.local/bin $HOME/bin /usr/local/bin /usr/local/sbin $PATH
 
 if [ (uname) = 'Darwin' ]
@@ -24,6 +23,7 @@ end
 # Editors
 set -x VISUAL "nvim"
 set -x EDITOR "$VISUAL"
+alias vim=nvim
 
 # exa
 alias l='exa -l --time-style long-iso'
@@ -41,3 +41,10 @@ if test -e ~/.rc.fish.local
     source ~/.rc.fish.local
 end
 
+function v
+    if count $argv > /dev/null
+        nvim $argv
+    else
+        vim (fzf --preview 'highlight -O xterm256 -s nightshimmer {}' --preview-window=right:70%)
+    end
+end

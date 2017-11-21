@@ -17,7 +17,6 @@ Plug 'fatih/vim-go'
 Plug 'kassio/neoterm'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'gorodinskiy/vim-coloresque'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'noc7c9/vim-iced-coffee-script'
@@ -25,6 +24,7 @@ Plug 'dln/avro-vim'
 Plug 'mileszs/ack.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'metakirby5/codi.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 call plug#end()
 
@@ -139,10 +139,8 @@ let g:NERDTreeMapOpenVSplit = 'v'
 " TagBar
 nmap <silent> <F4> :TagbarToggle<CR>
 
-" CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
+" CtrlP -> FZF
+nnoremap <c-p> :FZF<cr>
 
 " neovim Terminal
 tnoremap <Esc> <C-\><C-n>

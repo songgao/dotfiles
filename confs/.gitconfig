@@ -1,6 +1,6 @@
 [user]
-    name = Song Gao
-    email = song@gao.io
+	name = Song Gao
+	email = song@gao.io
 [core]
     autocrlf = input
     safecrlf = true
@@ -32,3 +32,8 @@
     conflictstyle = diff3
 [diff]
     algorithm = patience
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
