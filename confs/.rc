@@ -95,16 +95,12 @@ fi
 
 alias nvt='nvim -c term'
 
-if [ -f $HOME/.rc.local ]; then
-  source $HOME/.rc.local
-fi
-
 alias p8='ping 8.8.8.8'
 if which keybase &> /dev/null; then alias kbc="keybase chat"; fi
 zstyle ':completion:*' accept-exact-dirs true
 
-alias l='exa -l --time-style long-iso'
-alias t='exa -l --tree --time-style long-iso'
+alias l='exa -gl --time-style long-iso --group-directories-first'
+alias t='exa -gl --tree --time-style long-iso'
 
 source $HOME/.zsh-histdb/sqlite-history.zsh
 source $HOME/.zsh-histdb/history-timer.zsh
@@ -125,9 +121,20 @@ group by commands.argv order by count(*) desc limit 1"
 
 ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
 
+# fzf
+function v() {
+    if [ $# -eq 0 ]
+    then
+        fn=$(fzf --preview 'highlight -O xterm256 -s nightshimmer {}' --preview-window="right:70%")
+        if [ -n "$fn" ]; then nvim "$fn"; fi
+    else
+        nvim "$@"
+    fi
+}
+
 # powerline-go
 function powerline_precmd() {
-    PS1="$(~/gopath/bin/powerline-go -error $? -shell zsh)"
+    PS1="$(~/gopath/bin/powerline-go -error $? -shell zsh -colorize-hostname -mode=flat)"
 }
 function install_powerline_precmd() {
   for s in "${precmd_functions[@]}"; do
@@ -138,3 +145,8 @@ function install_powerline_precmd() {
   precmd_functions+=(powerline_precmd)
 }
 install_powerline_precmd
+
+if [ -f $HOME/.rc.local ]; then
+  source $HOME/.rc.local
+fi
+

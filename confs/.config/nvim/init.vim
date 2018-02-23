@@ -1,49 +1,60 @@
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
 Plug 'neomake/neomake'
 Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/echodoc.vim'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-Plug 'flazz/vim-colorschemes'
-Plug 'fatih/vim-go'
-Plug 'kassio/neoterm'
-Plug 'hail2u/vim-css3-syntax'
+Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'gorodinskiy/vim-coloresque'
-Plug 'rizzatti/dash.vim'
+
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
+
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+
+Plug 'dln/avro-vim'
+
 Plug 'kchmck/vim-coffee-script'
 Plug 'noc7c9/vim-iced-coffee-script'
-Plug 'dln/avro-vim'
-Plug 'mileszs/ack.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'metakirby5/codi.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'lchi/vim-toffee'
+
+" Plug 'othree/yajs.vim', { 'for': 'javascript' }
+" Plug 'hail2u/vim-css3-syntax'
+" Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+
+Plug 'flowtype/vim-flow', { 'for': 'javascript' }
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
 let mapleader="`"
 
 "" Tabs
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set smarttab
-set softtabstop=4
 set autoindent
 
-autocmd Filetype ruby setlocal sts=2 ts=2 sw=2 expandtab
-autocmd Filetype ruby setlocal sts=2 ts=2 sw=2 expandtab
+autocmd Filetype go setlocal ts=4 sts=4 sw=4 expandtab
+
+" js
+let g:javascript_plugin_flow = 0 "javascript flow syntax support
+let g:jsx_ext_required = 0 "let jsx helper work on js
+let g:flow#enable = 0
 
 " Tab highlights
-set list
-set listchars=tab:T>
+"set list
+"set listchars=tab:T>
 
 filetype on
 filetype plugin on
@@ -54,6 +65,9 @@ set mouse=a
 set undofile
 set backspace=indent,eol,start
 set omnifunc=syntaxcomplete#Complete
+
+" performance
+set lazyredraw
 
 " key binding: Ctrl-N for moving cursor in auto-complete list
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
@@ -71,18 +85,26 @@ set smartcase
 
 " Visual
 syntax on
+set number relativenumber
 set colorcolumn=80
 set showmatch
 set ruler
-set number
-colorscheme hybrid_material
 set laststatus=2
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+" Visual: theme
+set background=dark
+colorscheme hybrid_material
+
+" Visual: vim-indent-guides
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd  ctermbg=235
+hi IndentGuidesEven ctermbg=234
 
 " echodoc
 set noshowmode
 set cmdheight=2
-
 
 " vim-airline
 let g:airline_theme = 'tomorrow'
