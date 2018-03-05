@@ -3,27 +3,27 @@
     { "confs_path": ".tmux.conf", "home_path": ".tmux.conf" }
   ],
   "vim": [
-    { "confs_path": ".vimrc", "home_path": ".vimrc" },
+    { "confs_path": ".vimrc",             "home_path": ".vimrc" },
     { "confs_path": ".ycm_extra_conf.py", "home_path": ".ycm_extra_conf.py" }
   ],
   "nvim": [
-    { "confs_path": ".config/nvim/init.vim", "home_path": ".config/nvim/init.vim" },
+    { "confs_path": ".config/nvim/init.vim",          "home_path": ".config/nvim/init.vim" },
     { "confs_path": ".config/nvim/autoload/plug.vim", "home_path": ".config/nvim/autoload/plug.vim" }
   ],
   "git": [
-    { "confs_path": ".gitconfig", "home_path": ".gitconfig" },
-    { "confs_path": ".gitignore_global", "home_path": ".gitignore_global" }
+    { "confs_path": ".gitconfig",         "home_path": ".gitconfig" },
+    { "confs_path": ".gitignore_global",  "home_path": ".gitignore_global" }
   ],
   "zsh": [
-    { "confs_path": ".zprezto", "home_path": ".zprezto" },
-    { "confs_path": ".zprezto/runcoms/zlogin", "home_path": ".zlogin" },
-    { "confs_path": ".zprezto/runcoms/zlogout", "home_path": ".zlogout" },
+    { "confs_path": ".zprezto",                   "home_path": ".zprezto" },
+    { "confs_path": ".zprezto/runcoms/zlogin",    "home_path": ".zlogin" },
+    { "confs_path": ".zprezto/runcoms/zlogout",   "home_path": ".zlogout" },
     { "confs_path": ".zprezto/runcoms/zpreztorc", "home_path": ".zpreztorc" },
-    { "confs_path": ".zprezto/runcoms/zprofile", "home_path": ".zprofile" },
-    { "confs_path": ".zprezto/runcoms/zshenv", "home_path": ".zshenv" },
-    { "confs_path": ".zprezto/runcoms/zshrc", "home_path": ".zshrc" },
-    { "confs_path": ".zsh-histdb", "home_path": ".zsh-histdb" },
-    { "confs_path": ".rc", "home_path": ".rc" }
+    { "confs_path": ".zprezto/runcoms/zprofile",  "home_path": ".zprofile" },
+    { "confs_path": ".zprezto/runcoms/zshenv",    "home_path": ".zshenv" },
+    { "confs_path": ".zprezto/runcoms/zshrc",     "home_path": ".zshrc" },
+    { "confs_path": ".zsh-histdb",                "home_path": ".zsh-histdb" },
+    { "confs_path": ".rc",                        "home_path": ".rc" }
   ],
   "fish": [
     { "confs_path": ".config/fish/config.fish", "home_path": ".config/fish/config.fish" }
