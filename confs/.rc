@@ -1,11 +1,9 @@
-# Prezto aliases `rm` to `rm -i`. This un-does it.
-unalias rm
-
 # allows interactive comments
 set -k
 
 export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/texlive/2015/bin/x86_64-darwin/:$PATH
 
+# use GNU coreutils on macOS
 if [[ $(uname) == 'Darwin' ]]
 then
     # GNU coreutils
@@ -13,15 +11,20 @@ then
     MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 fi
 
-if [[ $(uname) == 'FreeBSD' ]]
-then
-  alias ls="ls -Ghl"
+if which exa &> /dev/null; then
+  alias l='exa -gl --time-style long-iso --group-directories-first'
+  alias t='exa -gl --tree --time-style long-iso'
 else
-  alias ls="ls --color=always -hl --time-style=long-iso --group-directories-first"
+  alias l="ls --color=always -hl --time-style=long-iso --group-directories-first"
 fi
 
-alias less="less -R"
-alias grep="grep --color=always"
+# Prezto aliases `rm` to `rm -i`. This un-does it.
+if alias rm &> /dev/null; then
+  unalias rm
+fi
+
+alias grep="grep --color=auto"
+alias p8='ping 8.8.8.8'
 
 # Python
 if [ -f $HOME/envs/python2/bin/activate ]; then
@@ -38,7 +41,6 @@ export GOBIN=$GOPATH/bin
 export PATH=$GOROOT/bin:$GOBIN:$PATH
 alias gf="gofmt -s -w -e -l"
 if which colorgo &> /dev/null; then alias go="colorgo"; fi
-
 gprefresh() {
   go list -f "{{.Dir}}" ... 2>/dev/null | grep -v vendor > $GOPATH/.list;
 }
@@ -79,78 +81,60 @@ repodir() {
 
 # Editors
 export VISUAL="nvim"
-export EDITOR="$VISUAL"
+export EDITOR="nvim"
 alias vim=nvim
 
-# transfer.sh
-transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
-tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
-
-# neovim-remote
-if [ -n "${NVIM_LISTEN_ADDRESS+x}" ]; then
-  alias h='nvr -o'
-  alias v='nvr -O'
-  alias t='nvr --remote-tab'
+# zsh-histdb
+if which sqlite3 &> /dev/null; then
+  source $HOME/.zsh-histdb/sqlite-history.zsh
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd  histdb-update-outcome
+  _zsh_autosuggest_strategy_histdb_top() {
+    local query="
+      select commands.argv from
+      history left join commands on history.command_id = commands.rowid
+      left join places on history.place_id = places.rowid
+      where commands.argv LIKE '$(sql_escape $1)%'
+      group by commands.argv
+      order by places.dir != '$(sql_escape $PWD)', count(*) desc limit 1
+    "
+    suggestion=$(_histdb_query "$query")
+  }
+  ZSH_AUTOSUGGEST_STRATEGY=histdb_top
 fi
 
-alias nvt='nvim -c term'
-
-alias p8='ping 8.8.8.8'
-if which keybase &> /dev/null; then alias kbc="keybase chat"; fi
-zstyle ':completion:*' accept-exact-dirs true
-
-alias l='exa -gl --time-style long-iso --group-directories-first'
-alias t='exa -gl --tree --time-style long-iso'
-
-source $HOME/.zsh-histdb/sqlite-history.zsh
-source $HOME/.zsh-histdb/history-timer.zsh
-
-autoload -Uz add-zsh-hook
-add-zsh-hook preexec _start_timer
-add-zsh-hook precmd  _stop_timer
-
-_zsh_autosuggest_strategy_histdb_top_here() {
-    local query="select commands.argv from
-history left join commands on history.command_id = commands.rowid
-left join places on history.place_id = places.rowid
-where places.dir LIKE '$(sql_escape $PWD)%'
-and commands.argv LIKE '$(sql_escape $1)%'
-group by commands.argv order by count(*) desc limit 1"
-    suggestion=$(_histdb_query "$query")
-}
-
-ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
-
-# fzf
-function v() {
-    if [ $# -eq 0 ]
-    then
-        fn=$(fzf --preview 'highlight -O xterm256 -s nightshimmer {}' --preview-window="right:70%")
-        if [ -n "$fn" ]; then nvim "$fn"; fi
-    else
-        nvim "$@"
-    fi
-}
+# fzf (installation handled by the `install` script provided by fzf)
+if which fzf &>/dev/null; then
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  function v() {
+      if [ $# -eq 0 ]
+      then
+          fn=$(fzf --preview 'highlight -O xterm256 -s nightshimmer {}' --preview-window="right:70%")
+          if [ -n "$fn" ]; then nvim "$fn"; fi
+      else
+          nvim "$@"
+      fi
+  }
+fi
 
 # powerline-go
-function powerline_precmd() {
-    PS1="$(~/gopath/bin/powerline-go -error $? -shell zsh -colorize-hostname -mode=flat)"
-}
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
-install_powerline_precmd
+if which powerline-go &>/dev/null; then
+  function powerline_precmd() {
+      PS1="$(~/gopath/bin/powerline-go -error $? -shell zsh -colorize-hostname -mode=flat)"
+  }
+  function install_powerline_precmd() {
+    for s in "${precmd_functions[@]}"; do
+      if [ "$s" = "powerline_precmd" ]; then
+        return
+      fi
+    done
+    precmd_functions+=(powerline_precmd)
+  }
+  install_powerline_precmd
+fi
 
 # make completion work for keybase
 zstyle ':completion:*' accept-exact-dirs true
-
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if [ -f $HOME/.rc.local ]; then
   source $HOME/.rc.local
