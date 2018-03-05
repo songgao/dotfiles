@@ -146,6 +146,12 @@ function install_powerline_precmd() {
 }
 install_powerline_precmd
 
+# make completion work for keybase
+zstyle ':completion:*' accept-exact-dirs true
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 if [ -f $HOME/.rc.local ]; then
   source $HOME/.rc.local
 fi
