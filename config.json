@@ -22,8 +22,8 @@
     { "confs_path": ".zprezto/runcoms/zprofile", "home_path": ".zprofile" },
     { "confs_path": ".zprezto/runcoms/zshenv", "home_path": ".zshenv" },
     { "confs_path": ".zprezto/runcoms/zshrc", "home_path": ".zshrc" },
+    { "confs_path": ".zsh-histdb", "home_path": ".zsh-histdb" },
     { "confs_path": ".rc", "home_path": ".rc" }
-    { "confs_path": ".zsh-histdb", "home_path": ".zsh-histdb" }
   ],
   "fish": [
     { "confs_path": ".config/fish/config.fish", "home_path": ".config/fish/config.fish" }
