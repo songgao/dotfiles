@@ -32,6 +32,7 @@ Plug 'lchi/vim-toffee'
 
 Plug 'flowtype/vim-flow', { 'for': 'javascript' }
 Plug 'sheerun/vim-polyglot'
+Plug 'steelsojka/deoplete-flow'
 
 call plug#end()
 
@@ -85,7 +86,7 @@ set smartcase
 
 " Visual
 syntax on
-set number relativenumber
+set number
 set colorcolumn=80
 set showmatch
 set ruler
@@ -137,14 +138,30 @@ let g:neomake_warning_sign = {'text': 'W>', 'texthl': 'NeomakeWarningSign'}
 let g:neomake_info_sign = {'text': 'i>', 'texthl': 'NeomakeInfoSign'}
 let g:neomake_message_sign = {'text': 'm>', 'texthl': 'NeomakeMessageSign'}
 
-" deoplete-go
+" deoplete
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 200
+let g:deoplete#file#enable_buffer_path = 1
+set completeopt+=noselect
+set completeopt-=preview
+
+" deoplete-go
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 let g:deoplete#sources#go#package_dot = 1
 let g:deoplete#sources#go#sort_class = ['func', 'var', 'const', 'type', 'package']
 let g:deoplete#sources#go#pointer = 1
-set completeopt+=noselect
-set completeopt-=preview
+
+" deoplete-flow
+let g:deoplete#source#attribute#min_pattern_length = 0
+let g:python3_host_prog = '/usr/local/bin/python3'
+function! StrTrim(txt)
+  return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+endfunction
+let g:flow_path = StrTrim(system('PATH=$(npm bin):$PATH && which flow'))
+if g:flow_path != 'flow not found'
+  let g:deoplete#sources#flow#flow_bin = g:flow_path
+endif
+
 
 " gitgutter
 noremap <C-g> :GitGutterLineHighlightsToggle<CR>
