@@ -10,6 +10,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'tpope/vim-obsession'
 
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -26,13 +27,12 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'noc7c9/vim-iced-coffee-script'
 Plug 'lchi/vim-toffee'
 
-" Plug 'othree/yajs.vim', { 'for': 'javascript' }
-" Plug 'hail2u/vim-css3-syntax'
-" Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-
 Plug 'flowtype/vim-flow', { 'for': 'javascript' }
 Plug 'sheerun/vim-polyglot'
 Plug 'steelsojka/deoplete-flow'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
 
 call plug#end()
 
@@ -116,6 +116,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
 let g:airline#extensions#tabline#buffer_min_count = 2
 let g:airline#extensions#tabline#tab_min_count = 2
+let g:airline#extensions#obsession#enabled = 1
 
 " vim-go
 let g:go_fmt_command = "goimports"
@@ -161,6 +162,10 @@ let g:flow_path = StrTrim(system('PATH=$(npm bin):$PATH && which flow'))
 if g:flow_path != 'flow not found'
   let g:deoplete#sources#flow#flow_bin = g:flow_path
 endif
+
+" JS prettier
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
 
 " gitgutter
