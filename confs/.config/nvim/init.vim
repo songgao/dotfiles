@@ -177,7 +177,7 @@ let g:gitgutter_diff_args = '-w'
 
 " NERD Tree
 noremap <F3> :NERDTreeToggle<CR>
-let g:NERDTreeMapOpenSplit = 's'
+let g:NERDTreeMapOpenSplit = 'x'
 let g:NERDTreeMapOpenVSplit = 'v'
 
 " TagBar

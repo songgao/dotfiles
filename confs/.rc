@@ -136,6 +136,8 @@ fi
 # make completion work for keybase
 zstyle ':completion:*' accept-exact-dirs true
 
+alias rg="rg --colors 'match:bg:yellow' --colors 'match:fg:0xA0,0xA0,0xA0' --colors 'match:style:nobold' --colors 'path:fg:green' --colors 'path:style:intense' --colors 'line:fg:yellow' --smart-case"
+
 if [ -f $HOME/.rc.local ]; then
   source $HOME/.rc.local
 fi
