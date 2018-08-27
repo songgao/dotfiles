@@ -7,9 +7,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'neomake/neomake'
 Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mileszs/ack.vim'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-obsession'
 
 Plug 'rafi/awesome-vim-colorschemes'
@@ -27,9 +28,9 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'noc7c9/vim-iced-coffee-script'
 Plug 'lchi/vim-toffee'
 
-Plug 'flowtype/vim-flow', { 'for': 'javascript' }
 Plug 'sheerun/vim-polyglot'
-Plug 'steelsojka/deoplete-flow'
+" Plug 'flowtype/vim-flow', { 'for': 'javascript' }
+" Plug 'steelsojka/deoplete-flow'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
@@ -52,6 +53,22 @@ autocmd Filetype go setlocal ts=4 sts=4 sw=4 expandtab
 let g:javascript_plugin_flow = 0 "javascript flow syntax support
 let g:jsx_ext_required = 0 "let jsx helper work on js
 let g:flow#enable = 0
+
+" LanguageClient
+set hidden
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['flow-language-server', '--flow-path=/home/songgao/gopath/src/github.com/keybase/client/shared/node_modules/.bin/flow', '--stdio'],
+    \ 'javascript.jsx': ['flow-language-server', '--flow-path=/home/songgao/gopath/src/github.com/keybase/client/shared/node_modules/.bin/flow', '--stdio'],
+    \ }
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+inoremap <silent> L :call LanguageClient#textDocument_completion()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+let g:LanguageClient_rootMarkers = ['.flowconfig']
+let g:LanguageClient_selectionUI = 'location-list'
+let g:LanguageClient_diagnosticsList = 'Location'
+
 
 " Tab highlights
 "set list
@@ -145,6 +162,7 @@ let g:deoplete#auto_complete_delay = 200
 let g:deoplete#file#enable_buffer_path = 1
 set completeopt+=noselect
 set completeopt-=preview
+au FileType javascript setlocal omnifunc=flowcomplete#Complete
 
 " deoplete-go
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
@@ -154,7 +172,7 @@ let g:deoplete#sources#go#pointer = 1
 
 " deoplete-flow
 let g:deoplete#source#attribute#min_pattern_length = 0
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = 'python3'
 function! StrTrim(txt)
   return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 endfunction
