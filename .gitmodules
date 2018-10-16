@@ -1,9 +1,3 @@
-[submodule "confs/.zprezto"]
-	path = confs/.zprezto
-	url = https://github.com/songgao/prezto.git
-[submodule "confs/.zsh-histdb"]
-	path = confs/.zsh-histdb
-	url = git@github.com:larkery/zsh-histdb.git
 [submodule "confs/zplug"]
 	path = confs/zplug
 	url = https://github.com/zplug/zplug
