@@ -30,6 +30,7 @@
     enabled = 1
 [merge]
     conflictstyle = diff3
+    tool = vimdiff
 [diff]
     algorithm = patience
 [filter "lfs"]
@@ -37,3 +38,5 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+[mergetool "vimdiff"]
+  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'

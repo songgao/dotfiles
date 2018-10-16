@@ -8,7 +8,7 @@ Plug 'neomake/neomake'
 Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mileszs/ack.vim'
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-obsession'
@@ -49,24 +49,27 @@ set autoindent
 
 autocmd Filetype go setlocal ts=4 sts=4 sw=4 expandtab
 
+" open path under cursor
+" :map <C-V> :vertical wincmd f<CR>
+
 " js
 let g:javascript_plugin_flow = 0 "javascript flow syntax support
 let g:jsx_ext_required = 0 "let jsx helper work on js
 let g:flow#enable = 0
 
 " LanguageClient
-set hidden
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['flow-language-server', '--flow-path=/home/songgao/gopath/src/github.com/keybase/client/shared/node_modules/.bin/flow', '--stdio'],
-    \ 'javascript.jsx': ['flow-language-server', '--flow-path=/home/songgao/gopath/src/github.com/keybase/client/shared/node_modules/.bin/flow', '--stdio'],
-    \ }
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-let g:LanguageClient_rootMarkers = ['.flowconfig']
-let g:LanguageClient_selectionUI = 'location-list'
-let g:LanguageClient_diagnosticsList = 'Location'
+" set hidden
+" let g:LanguageClient_serverCommands = {
+"     \ 'javascript': ['flow-language-server', '--flow-path=/home/songgao/gopath/src/github.com/keybase/client/shared/node_modules/.bin/flow', '--stdio'],
+"     \ 'javascript.jsx': ['flow-language-server', '--flow-path=/home/songgao/gopath/src/github.com/keybase/client/shared/node_modules/.bin/flow', '--stdio'],
+"     \ }
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+" let g:LanguageClient_rootMarkers = ['.flowconfig']
+" let g:LanguageClient_selectionUI = 'location-list'
+" let g:LanguageClient_diagnosticsList = 'Location'
 
 
 " Tab highlights
@@ -209,7 +212,7 @@ tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
-autocmd BufWinEnter,WinEnter term://* startinsert
+" autocmd BufWinEnter,WinEnter term://* startinsert
 autocmd BufLeave term://* stopinsert
 
 " *.avdl
