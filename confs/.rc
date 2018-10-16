@@ -86,7 +86,6 @@ alias vim=nvim
 
 # zsh-histdb
 if which sqlite3 &> /dev/null; then
-  source $HOME/.zsh-histdb/sqlite-history.zsh
   autoload -Uz add-zsh-hook
   add-zsh-hook precmd  histdb-update-outcome
   _zsh_autosuggest_strategy_histdb_top() {
