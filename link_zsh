@@ -1,10 +1,4 @@
 cd $(dirname $0)
-mkdir -p $(dirname $HOME/.zprezto) && ln -sni $PWD/confs/.zprezto $HOME/.zprezto
-mkdir -p $(dirname $HOME/.zlogin) && ln -sni $PWD/confs/.zprezto/runcoms/zlogin $HOME/.zlogin
-mkdir -p $(dirname $HOME/.zlogout) && ln -sni $PWD/confs/.zprezto/runcoms/zlogout $HOME/.zlogout
-mkdir -p $(dirname $HOME/.zpreztorc) && ln -sni $PWD/confs/.zprezto/runcoms/zpreztorc $HOME/.zpreztorc
-mkdir -p $(dirname $HOME/.zprofile) && ln -sni $PWD/confs/.zprezto/runcoms/zprofile $HOME/.zprofile
-mkdir -p $(dirname $HOME/.zshenv) && ln -sni $PWD/confs/.zprezto/runcoms/zshenv $HOME/.zshenv
-mkdir -p $(dirname $HOME/.zshrc) && ln -sni $PWD/confs/.zprezto/runcoms/zshrc $HOME/.zshrc
-mkdir -p $(dirname $HOME/.zsh-histdb) && ln -sni $PWD/confs/.zsh-histdb $HOME/.zsh-histdb
 mkdir -p $(dirname $HOME/.rc) && ln -sni $PWD/confs/.rc $HOME/.rc
+mkdir -p $(dirname $HOME/.zplug) && ln -sni $PWD/confs/zplug $HOME/.zplug
+mkdir -p $(dirname $HOME/.zshrc) && ln -sni $PWD/confs/.zshrc $HOME/.zshrc
