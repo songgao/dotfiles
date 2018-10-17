@@ -1,7 +1,4 @@
-# allows interactive comments
-set -k
-
-export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/texlive/2015/bin/x86_64-darwin/:$PATH
+export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 # use GNU coreutils on macOS
 if [[ $(uname) == 'Darwin' ]]
@@ -16,11 +13,6 @@ if which exa &> /dev/null; then
   alias t='exa -gl --tree --time-style long-iso'
 else
   alias l="ls --color=always -hl --time-style=long-iso --group-directories-first"
-fi
-
-# Prezto aliases `rm` to `rm -i`. This un-does it.
-if alias rm &> /dev/null; then
-  unalias rm
 fi
 
 alias grep="grep --color=auto"
@@ -84,60 +76,4 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 alias vim=nvim
 
-# zsh-histdb
-if which sqlite3 &> /dev/null; then
-  autoload -Uz add-zsh-hook
-  add-zsh-hook precmd  histdb-update-outcome
-  _zsh_autosuggest_strategy_histdb_top() {
-    local query="
-      select commands.argv from
-      history left join commands on history.command_id = commands.rowid
-      left join places on history.place_id = places.rowid
-      where commands.argv LIKE '$(sql_escape $1)%'
-      group by commands.argv
-      order by places.dir != '$(sql_escape $PWD)', count(*) desc limit 1
-    "
-    suggestion=$(_histdb_query "$query")
-  }
-  ZSH_AUTOSUGGEST_STRATEGY=histdb_top
-fi
-
-# fzf (installation handled by the `install` script provided by fzf)
-if which fzf &>/dev/null; then
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-  function v() {
-      if [ $# -eq 0 ]
-      then
-          fn=$(fzf --preview 'highlight -O xterm256 -s nightshimmer {}' --preview-window="right:70%")
-          if [ -n "$fn" ]; then nvim "$fn"; fi
-      else
-          nvim "$@"
-      fi
-  }
-fi
-
-# powerline-go
-if which powerline-go &>/dev/null; then
-  function powerline_precmd() {
-      PS1="$(~/gopath/bin/powerline-go -error $? -shell zsh -colorize-hostname -mode=flat)"
-  }
-  function install_powerline_precmd() {
-    for s in "${precmd_functions[@]}"; do
-      if [ "$s" = "powerline_precmd" ]; then
-        return
-      fi
-    done
-    precmd_functions+=(powerline_precmd)
-  }
-  install_powerline_precmd
-fi
-
-# make completion work for keybase
-zstyle ':completion:*' accept-exact-dirs true
-
 alias rg="rg --colors 'match:bg:yellow' --colors 'match:fg:0xA0,0xA0,0xA0' --colors 'match:style:nobold' --colors 'path:fg:green' --colors 'path:style:intense' --colors 'line:fg:yellow' --smart-case"
-
-if [ -f $HOME/.rc.local ]; then
-  source $HOME/.rc.local
-fi
-
