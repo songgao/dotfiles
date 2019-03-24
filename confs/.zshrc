@@ -36,6 +36,9 @@ setopt share_history # share history between different instances of the shell
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+# confirm history expansion
+setopt hist_verify
+
 # =============================================================================
 
 # make completion work for keybase
@@ -77,3 +80,5 @@ if [ -f $HOME/.rc.local ]; then
 fi
 
 after_source_rc
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

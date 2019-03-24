@@ -1,14 +1,13 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim' "status bar / tabs
 Plug 'airblade/vim-gitgutter'
 Plug 'neomake/neomake'
 Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mileszs/ack.vim'
-" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-obsession'
@@ -29,13 +28,15 @@ Plug 'noc7c9/vim-iced-coffee-script'
 Plug 'lchi/vim-toffee'
 
 Plug 'sheerun/vim-polyglot'
-" Plug 'flowtype/vim-flow', { 'for': 'javascript' }
-" Plug 'steelsojka/deoplete-flow'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+Plug 'w0rp/ale' "linter
 
 call plug#end()
+
+if exists("g:gui_oni")
+  let $GOPATH = '/Users/songgao/gopath'
+  let $PATH .= '/Users/songgao/go/bin'
+  let $PATH .= '/Users/songgao/gopath/bin'
+endif
 
 let mapleader="`"
 
@@ -49,32 +50,24 @@ set autoindent
 
 autocmd Filetype go setlocal ts=4 sts=4 sw=4 expandtab
 
-" open path under cursor
-" :map <C-V> :vertical wincmd f<CR>
-
 " js
 let g:javascript_plugin_flow = 0 "javascript flow syntax support
 let g:jsx_ext_required = 0 "let jsx helper work on js
 let g:flow#enable = 0
 
 " LanguageClient
-" set hidden
-" let g:LanguageClient_serverCommands = {
-"     \ 'javascript': ['flow-language-server', '--flow-path=/home/songgao/gopath/src/github.com/keybase/client/shared/node_modules/.bin/flow', '--stdio'],
-"     \ 'javascript.jsx': ['flow-language-server', '--flow-path=/home/songgao/gopath/src/github.com/keybase/client/shared/node_modules/.bin/flow', '--stdio'],
-"     \ }
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-" nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-" nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-" let g:LanguageClient_rootMarkers = ['.flowconfig']
-" let g:LanguageClient_selectionUI = 'location-list'
-" let g:LanguageClient_diagnosticsList = 'Location'
-
-
-" Tab highlights
-"set list
-"set listchars=tab:T>
+set hidden
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['flow-language-server', '--flow-path=/home/songgao/gopath/src/github.com/keybase/client/shared/node_modules/.bin/flow', '--stdio'],
+    \ 'javascript.jsx': ['flow-language-server', '--flow-path=/home/songgao/gopath/src/github.com/keybase/client/shared/node_modules/.bin/flow', '--stdio'],
+    \ }
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+let g:LanguageClient_rootMarkers = ['.flowconfig']
+let g:LanguageClient_selectionUI = 'location-list'
+let g:LanguageClient_diagnosticsList = 'Location'
 
 filetype on
 filetype plugin on
@@ -127,15 +120,15 @@ set noshowmode
 set cmdheight=2
 
 " vim-airline
-let g:airline_theme = 'tomorrow'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline#extensions#neomake#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
-let g:airline#extensions#tabline#buffer_min_count = 2
-let g:airline#extensions#tabline#tab_min_count = 2
-let g:airline#extensions#obsession#enabled = 1
+" let g:airline_theme = 'tomorrow'
+" let g:airline_left_sep=''
+" let g:airline_right_sep=''
+" let g:airline#extensions#neomake#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
+" let g:airline#extensions#tabline#buffer_min_count = 2
+" let g:airline#extensions#tabline#tab_min_count = 2
+" let g:airline#extensions#obsession#enabled = 1
 
 " vim-go
 let g:go_fmt_command = "goimports"
@@ -184,8 +177,44 @@ if g:flow_path != 'flow not found'
 endif
 
 " JS prettier
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+" let g:prettier#autoformat = 0
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.js.flow PrettierAsync
+" autocmd BufEnter *.flow :setlocal filetype=javascript
+
+" ALE -- stolen from chrisnojima
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+autocmd User ALELint call s:MaybeUpdateLightline()
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_linters = { 'javascript': ['eslint'] }
+let g:ale_fixers = { 'javascript': ['eslint', 'prettier'] }
+let g:ale_fix_on_save = 1
 
 
 " gitgutter

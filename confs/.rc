@@ -76,4 +76,11 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 alias vim=nvim
 
+# ripgrep
 alias rg="rg --colors 'match:bg:yellow' --colors 'match:fg:0xA0,0xA0,0xA0' --colors 'match:style:nobold' --colors 'path:fg:green' --colors 'path:style:intense' --colors 'line:fg:yellow' --smart-case"
+
+# git
+alias gpull="git pull"
+alias gpo="git push origin"
+alias gc="git checkout" 
+alias gs="git status" 
