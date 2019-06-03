@@ -12,6 +12,10 @@
     {
       "confs_path": ".config/nvim/autoload/plug.vim",
       "home_path": ".config/nvim/autoload/plug.vim"
+    },
+    {
+      "confs_path": ".config/nvim/coc-settings.json",
+      "home_path": ".config/nvim/coc-settings.json"
     }
   ],
   "git": [

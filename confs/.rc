@@ -4,7 +4,7 @@ export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 if [[ $(uname) == 'Darwin' ]]
 then
     # GNU coreutils
-    PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    PATH="/usr/local/opt/coreutils/libexec/gnubin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
     MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 fi
 
@@ -82,5 +82,5 @@ alias rg="rg --colors 'match:bg:yellow' --colors 'match:fg:0xA0,0xA0,0xA0' --col
 # git
 alias gpull="git pull"
 alias gpo="git push origin"
-alias gc="git checkout" 
-alias gs="git status" 
+alias gc="git checkout"
+alias gs="git status"
