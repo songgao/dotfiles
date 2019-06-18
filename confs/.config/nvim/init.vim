@@ -19,7 +19,6 @@ Plug 'tpope/vim-obsession'
 
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'gorodinskiy/vim-coloresque'
 
 Plug 'fatih/vim-go', { 'for': 'go' }
 
@@ -32,7 +31,6 @@ Plug 'noc7c9/vim-iced-coffee-script'
 Plug 'lchi/vim-toffee'
 
 Plug 'sheerun/vim-polyglot'
-Plug 'w0rp/ale' "linter
 
 call plug#end()
 
@@ -125,28 +123,10 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" ale stolen from chrisnojima
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
-let g:ale_sign_warning = '▲'
-let g:ale_sign_error = '✗'
-let g:ale_javascript_prettier_use_local_config = 1
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-\   'typescript': ['eslint'],
-\   'typescript.jsx': ['eslint'],
-\   'javascript': ['eslint'],
-\   'scss': ['stylelint'],
-\}
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'typescript': ['eslint', 'prettier'],
-\   'typescript.jsx': ['eslint', 'prettier'],
-\   'javascript': ['eslint', 'prettier'],
-\   'scss': ['prettier', 'stylelint'],
-\}
-let g:ale_fix_on_save = 1
-
+" coc
+let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-json', 'coc-prettier', 'coc-css']
+" Use K to show documentation in preview window
+nnoremap <silent> K :call CocAction('doHover')<CR>
 
 " gitgutter
 noremap <C-g> :GitGutterLineHighlightsToggle<CR>
