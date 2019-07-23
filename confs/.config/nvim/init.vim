@@ -20,8 +20,6 @@ Plug 'tpope/vim-obsession'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'nathanaelkane/vim-indent-guides'
 
-Plug 'fatih/vim-go', { 'for': 'go' }
-
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 Plug 'dln/avro-vim'
@@ -96,18 +94,17 @@ hi IndentGuidesEven ctermbg=234
 set noshowmode
 set cmdheight=2
 
-" vim-go
-let g:go_fmt_command = "goimports"
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_auto_type_info=0
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gb <Plug>(go-build)
-au FileType go nmap <Leader>gt <Plug>(go-test)
+" Go
+" adapted from vim-go
+function! GoImports()
+  let l:curw = winsaveview()
+  %! goimports | gofmt
+  " run through gofmt again to make sure it uses format fro GOROOT's gofmt
+  %! gofmt
+  call winrestview(l:curw)
+endfunction
+autocmd FileType go autocmd BufWritePre <buffer> call GoImports()
+
 
 " neomake
 autocmd! BufWritePost * Neomake
