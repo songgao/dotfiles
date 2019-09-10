@@ -112,14 +112,15 @@ set cmdheight=2
 
 " Go
 " adapted from vim-go
-function! GoImports()
-  let l:curw = winsaveview()
-  %! goimports | gofmt
-  " run through gofmt again to make sure it uses format fro GOROOT's gofmt
-  %! gofmt
-  call winrestview(l:curw)
-endfunction
-autocmd FileType go autocmd BufWritePre <buffer> call GoImports()
+" function! GoImports()
+"   let l:curw = winsaveview()
+"   %! goimports | gofmt
+"   " run through gofmt again to make sure it uses format fro GOROOT's gofmt
+"   %! gofmt
+"   call winrestview(l:curw)
+" endfunction
+" autocmd FileType go autocmd BufWritePre <buffer> call GoImports()
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 
 " neomake
