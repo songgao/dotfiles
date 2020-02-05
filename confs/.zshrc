@@ -53,7 +53,8 @@ set_up_powerline() {
   # use powerline-go for prompt 
   if which powerline-go &>/dev/null; then
     function powerline_precmd() {
-        PS1="$(powerline-go -error $? -shell zsh -colorize-hostname -mode=flat)"
+        # PS1="$(powerline-go -error $? -shell zsh -colorize-hostname -mode=flat)"
+        PS1="$(powerline-go -error $? -shell zsh -colorize-hostname -mode=flat -modules="nix-shell,venv,user,host,ssh,cwd,perms,gitlite,hg,jobs,exit,root,vgo")"
     }
     function install_powerline_precmd() {
       for s in "${precmd_functions[@]}"; do

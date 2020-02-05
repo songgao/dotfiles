@@ -3,7 +3,7 @@
 	email = song@gao.io
 [core]
     autocrlf = input
-    safecrlf = true
+    # safecrlf = true
     excludesfile = ~/.gitignore_global
 [alias]
     co = checkout

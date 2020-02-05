@@ -14,7 +14,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'mileszs/ack.vim'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-obsession'
 
 Plug 'rafi/awesome-vim-colorschemes'
@@ -90,15 +90,17 @@ set smartcase
 " Visual
 syntax on
 set number
+set relativenumber
 set colorcolumn=80
 set showmatch
 set ruler
 set laststatus=2
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+set termguicolors
 
 " Visual: theme
 set background=dark
-colorscheme hybrid_material
+colorscheme hybrid
 
 " Visual: vim-indent-guides
 let g:indent_guides_enable_on_vim_startup=1
@@ -138,9 +140,12 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " coc
-let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-json', 'coc-prettier', 'coc-css']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-json', 'coc-prettier', 'coc-css', 'coc-highlight']
 " Use K to show documentation in preview window
 nnoremap <silent> K :call CocAction('doHover')<CR>
+set updatetime=1000
+autocmd CursorHold * silent call CocActionAsync('highlight')
+highlight CocHighlightText ctermbg=Grey guibg=Grey
 
 " gitgutter
 noremap <C-g> :GitGutterLineHighlightsToggle<CR>
