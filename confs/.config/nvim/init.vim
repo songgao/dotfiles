@@ -90,7 +90,7 @@ set smartcase
 " Visual
 syntax on
 set number
-set relativenumber
+" set relativenumber
 set colorcolumn=80
 set showmatch
 set ruler
@@ -100,7 +100,7 @@ set termguicolors
 
 " Visual: theme
 set background=dark
-colorscheme hybrid
+colorscheme hybrid_reverse
 
 " Visual: vim-indent-guides
 let g:indent_guides_enable_on_vim_startup=1

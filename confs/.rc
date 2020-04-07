@@ -50,7 +50,6 @@ _gpcd() {
 gpcd() {
   _gpcd $(echo $(grep --color=never "/$1\$" "$GOPATH/.list"))
 }
-
 repodir() {
     local old_pwd="$PWD"
     local counter="."
@@ -70,6 +69,9 @@ repodir() {
         counter="../$counter"
     done
 }
+
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Editors
 export VISUAL="nvim"
