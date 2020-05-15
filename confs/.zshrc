@@ -1,6 +1,6 @@
 source ~/.zplug/init.zsh
 
-zplug "larkery/zsh-histdb"
+# zplug "larkery/zsh-histdb"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-history-substring-search"
 
@@ -17,11 +17,11 @@ zplug load
 # =============================================================================
 
 # histdb setups
-if which sqlite3 &> /dev/null; then
-  autoload -Uz add-zsh-hook
-  add-zsh-hook precmd  histdb-update-outcome
-  HISTDB_TABULATE_CMD=(column -t -s $'\x1f') # otherwise histdb cmd is broken
-fi
+# if which sqlite3 &> /dev/null; then
+#   autoload -Uz add-zsh-hook
+#   add-zsh-hook precmd  histdb-update-outcome
+#   HISTDB_TABULATE_CMD=(column -t -s $'\x1f') # otherwise histdb cmd is broken
+# fi
 
 # save history
 HISTFILE=$HOME/.zsh_history
@@ -54,7 +54,7 @@ set_up_powerline() {
   if which powerline-go &>/dev/null; then
     function powerline_precmd() {
         # PS1="$(powerline-go -error $? -shell zsh -colorize-hostname -mode=flat)"
-        PS1="$(powerline-go -error $? -shell zsh -colorize-hostname -mode=flat -modules="nix-shell,venv,user,host,ssh,cwd,perms,gitlite,hg,jobs,exit,root,vgo")"
+        PS1="$(powerline-go -error $? -shell zsh -mode=flat -modules="nix-shell,venv,user,host,ssh,cwd,perms,gitlite,hg,jobs,exit,root,vgo")"
     }
     function install_powerline_precmd() {
       for s in "${precmd_functions[@]}"; do
