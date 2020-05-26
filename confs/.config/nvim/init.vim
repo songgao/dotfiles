@@ -140,7 +140,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " coc
-let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-json', 'coc-prettier', 'coc-css', 'coc-highlight']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-json', 'coc-prettier', 'coc-css', 'coc-highlight', 'coc-go']
 " Use K to show documentation in preview window
 nnoremap <silent> K :call CocAction('doHover')<CR>
 set updatetime=1000
