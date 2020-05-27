@@ -10,6 +10,9 @@
       "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
       "rootPatterns": [".ccls-root", "compile_commands.json"],
       "initializationOptions": {
+        "highlight": {
+          "lsRanges": true
+        },
         "cache": {
           "directory": ".ccls-cache"
         },

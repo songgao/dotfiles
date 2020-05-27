@@ -30,6 +30,9 @@ Plug 'lchi/vim-toffee'
 
 Plug 'sheerun/vim-polyglot'
 
+" c++
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+
 call plug#end()
 
 let mapleader="`"
