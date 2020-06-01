@@ -4,22 +4,6 @@
       "command": "gopls",
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
-    },
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
-      "rootPatterns": [".ccls-root", "compile_commands.json"],
-      "initializationOptions": {
-        "highlight": {
-          "lsRanges": true
-        },
-        "cache": {
-          "directory": ".ccls-cache"
-        },
-        "client": {
-          "snippetSupport": true
-        }
-      }
     }
   },
   "suggest.echodocSupport": true,
@@ -41,7 +25,9 @@
     "typescriptreact",
     "javascriptreact"
   ],
+  "eslint.autoFixOnSave": true,
   "diagnostic.errorSign": "✗",
   "diagnostic.warningSign": "▲",
-  "diagnostic.infoSign": "•"
+  "diagnostic.infoSign": "•",
+  "clangd.path": "/Users/zonggao/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd"
 }

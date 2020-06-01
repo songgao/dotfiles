@@ -27,8 +27,8 @@ if [ -f $HOME/envs/python3/bin/activate ]; then
 fi
 
 # Go
-export GOROOT=$HOME/go
-export GOPATH=$HOME/gopath
+export GOROOT=$HOME/.go/go
+export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$GOROOT/bin:$GOBIN:$PATH
 alias gf="gofmt -s -w -e -l"
