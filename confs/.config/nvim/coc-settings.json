@@ -10,8 +10,8 @@
   "suggest.maxCompleteItemCount": 20,
   "coc.preferences.hoverTarget": "echo",
   "coc.preferences.formatOnSaveFiletypes": [
-    "c",
-    "cpp",
+    //"c",
+    //"cpp",
     "javascript",
     "typescript",
     "typescriptreact",
@@ -29,5 +29,22 @@
   "diagnostic.errorSign": "✗",
   "diagnostic.warningSign": "▲",
   "diagnostic.infoSign": "•",
-  "clangd.path": "/Users/zonggao/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd"
+  "clangd.path": "/Users/zonggao/.config/coc/extensions/coc-clangd-data/install/10.0.0/clangd_10.0.0/bin/clangd",
+  "clangd.arguments": [
+    "--all-scopes-completion",
+    "--background-index",
+    "--clang-tidy",
+    "--compile_args_from=filesystem",
+    "--completion-parse=always",
+    "--completion-style=detailed",
+    "--cross-file-rename",
+    "--function-arg-placeholders",
+    "--header-insertion-decorators",
+    "--header-insertion=never",
+    "--limit-results=9999999",
+    "--pch-storage=memory",
+    "--query-driver=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/*",
+    "-j=6"
+  ],
+  "clangd.fallbackFlags": ["-xc++"]
 }

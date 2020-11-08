@@ -47,39 +47,13 @@ zstyle ':completion:*' accept-exact-dirs true
 # allows interactive comments
 set -k
 
-# =============================================================================
-
-set_up_powerline() {
-  # use powerline-go for prompt 
-  if which powerline-go &>/dev/null; then
-    function powerline_precmd() {
-        # PS1="$(powerline-go -error $? -shell zsh -colorize-hostname -mode=flat)"
-        PS1="$(powerline-go -error $? -shell zsh -mode=flat -modules="nix-shell,venv,user,host,ssh,cwd,perms,gitlite,hg,jobs,exit,root,vgo")"
-    }
-    function install_powerline_precmd() {
-      for s in "${precmd_functions[@]}"; do
-        if [ "$s" = "powerline_precmd" ]; then
-          return
-        fi
-      done
-      precmd_functions+=(powerline_precmd)
-    }
-    install_powerline_precmd
-  fi
-}
-
-after_source_rc() {
-  set_up_powerline
-}
-
-# =============================================================================
+# enable starship
+eval "$(starship init zsh)"
 
 source $HOME/.rc
 
 if [ -f $HOME/.rc.local ]; then
   source $HOME/.rc.local
 fi
-
-after_source_rc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,7 +1,8 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'itchyny/lightline.vim' "status bar / tabs
+Plug 'itchyny/lightline.vim' " status bar / tabs
+Plug 'liuchengxu/vista.vim' " right column
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -9,11 +10,12 @@ Plug 'tpope/vim-rhubarb'
 "Plug 'rhysd/git-messenger.vim'
 
 Plug 'neomake/neomake'
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mileszs/ack.vim'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-obsession'
 
@@ -32,6 +34,10 @@ Plug 'sheerun/vim-polyglot'
 
 " c++
 Plug 'jackguo380/vim-lsp-cxx-highlight'
+
+Plug 'tpope/vim-surround'
+
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 
@@ -111,6 +117,9 @@ let g:indent_guides_auto_colors = 0
 hi IndentGuidesOdd  ctermbg=235
 hi IndentGuidesEven ctermbg=234
 
+" vista
+let g:vista#renderer#enable_icon = 1
+
 " echodoc
 set noshowmode
 set cmdheight=2
@@ -149,6 +158,13 @@ nnoremap <silent> K :call CocAction('doHover')<CR>
 set updatetime=1000
 autocmd CursorHold * silent call CocActionAsync('highlight')
 highlight CocHighlightText ctermbg=Grey guibg=Grey
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 
 " gitgutter
 noremap <C-g> :GitGutterLineHighlightsToggle<CR>
@@ -163,10 +179,11 @@ let g:NERDTreeMapOpenSplit = 'x'
 let g:NERDTreeMapOpenVSplit = 'v'
 
 " TagBar
-nmap <silent> <F4> :TagbarToggle<CR>
+" nmap <silent> <C-i> :Vista!!<CR>
 
 " CtrlP -> FZF
-nnoremap <c-p> :FZF<cr>
+nnoremap <c-p> :Files<cr>
+nnoremap <c-f> :Rg<cr>
 
 " neovim Terminal
 tnoremap <Esc> <C-\><C-n>

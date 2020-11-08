@@ -15,7 +15,7 @@ else
   alias l="ls --color=always -hl --time-style=long-iso --group-directories-first"
 fi
 
-alias grep="grep --color=auto"
+alias grep="grep --color=auto --line-buffered"
 alias p8='ping 8.8.8.8'
 
 # Python
@@ -79,10 +79,12 @@ export EDITOR="nvim"
 alias vim=nvim
 
 # ripgrep
-alias rg="rg --colors 'match:bg:yellow' --colors 'match:fg:0xA0,0xA0,0xA0' --colors 'match:style:nobold' --colors 'path:fg:green' --colors 'path:style:intense' --colors 'line:fg:yellow' --smart-case"
+alias rg="rg --colors 'match:bg:yellow' --colors 'match:fg:0xA0,0xA0,0xA0' --colors 'match:style:nobold' --colors 'path:fg:green' --colors 'path:style:intense' --colors 'line:fg:yellow' --smart-case --line-buffered"
 
 # git
-alias gpull="git pull"
+alias gpull="git pull --ff-only"
 alias gpo="git push origin"
-alias gc="git checkout"
+alias gco="git checkout"
+alias gci="git commit"
+alias gcia="git commit --amend --date=\"$(date -R)\""
 alias gs="git status"
