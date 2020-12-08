@@ -47,13 +47,13 @@ zstyle ':completion:*' accept-exact-dirs true
 # allows interactive comments
 set -k
 
-# enable starship
-eval "$(starship init zsh)"
-
 source $HOME/.rc
 
 if [ -f $HOME/.rc.local ]; then
   source $HOME/.rc.local
 fi
+
+# enable starship
+eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

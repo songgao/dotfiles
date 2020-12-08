@@ -7,3 +7,6 @@ disabled = false
 
 [git_status]
 disabled = true
+
+[aws]
+disabled = true
