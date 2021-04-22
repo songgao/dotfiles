@@ -3,6 +3,7 @@
   "suggest.maxCompleteItemCount": 20,
   "coc.preferences.hoverTarget": "echo",
   "coc.preferences.formatOnSaveFiletypes": [
+    "rust",
     //"c",
     //"cpp",
     "javascript",
@@ -39,5 +40,11 @@
     "--query-driver=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/*",
     "-j=6"
   ],
-  "clangd.fallbackFlags": ["-xc++"]
+  "clangd.fallbackFlags": ["-xc++"],
+  "languageserver": {
+    "zls": {
+      "command": "~/repo/zls/zig-cache/bin/zls",
+      "filetypes": ["zig"]
+    }
+  }
 }

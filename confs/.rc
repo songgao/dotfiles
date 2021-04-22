@@ -73,6 +73,9 @@ repodir() {
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# Zig
+export PATH="$HOME/.zig/zig:$PATH"
+
 # Editors
 export VISUAL="nvim"
 export EDITOR="nvim"
