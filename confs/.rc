@@ -9,8 +9,8 @@ then
 fi
 
 if which exa &> /dev/null; then
-  alias l='exa -gl --time-style long-iso --group-directories-first'
-  alias t='exa -gl --tree --time-style long-iso'
+  alias l='exa -glb --time-style long-iso --group-directories-first'
+  alias t='exa -glb --tree --time-style long-iso'
 else
   alias l="ls --color=always -hl --time-style=long-iso --group-directories-first"
 fi
