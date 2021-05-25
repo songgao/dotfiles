@@ -4,16 +4,13 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'itchyny/lightline.vim' " status bar / tabs
 Plug 'liuchengxu/vista.vim' " right column
 
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-"Plug 'rhysd/git-messenger.vim'
+Plug 'rhysd/git-messenger.vim'
+Plug 'mhinz/vim-signify'
 
 Plug 'neomake/neomake'
 " Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mileszs/ack.vim'
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -151,11 +148,12 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+set updatetime=200
+
 " coc
 let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-json', 'coc-prettier', 'coc-css', 'coc-highlight', 'coc-go', 'coc-clangd']
 " Use K to show documentation in preview window
 nnoremap <silent> K :call CocAction('doHover')<CR>
-set updatetime=1000
 autocmd CursorHold * silent call CocActionAsync('highlight')
 highlight CocHighlightText ctermbg=Grey guibg=Grey
 " Add `:Format` command to format current buffer.
@@ -166,9 +164,13 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-" gitgutter
-noremap <C-g> :GitGutterLineHighlightsToggle<CR>
-let g:gitgutter_diff_args = '-w'
+" git-messenger
+nmap <C-m> <Plug>(git-messenger)
+" signify
+nmap <C-g> :SignifyToggleHighlight<cr>
+highlight SignifySignAdd    ctermfg=green  guifg=#70ff70 cterm=NONE gui=NONE
+highlight SignifySignDelete ctermfg=red    guifg=#ff7070 cterm=NONE gui=NONE
+highlight SignifySignChange ctermfg=54 guifg=#6666ff cterm=NONE gui=NONE
 
 " Dash
 :nmap <silent> <leader>d <Plug>DashSearch
