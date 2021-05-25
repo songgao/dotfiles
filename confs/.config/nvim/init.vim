@@ -168,9 +168,6 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 nmap <C-m> <Plug>(git-messenger)
 " signify
 nmap <C-g> :SignifyToggleHighlight<cr>
-highlight SignifySignAdd    ctermfg=green  guifg=#70ff70 cterm=NONE gui=NONE
-highlight SignifySignDelete ctermfg=red    guifg=#ff7070 cterm=NONE gui=NONE
-highlight SignifySignChange ctermfg=54 guifg=#6666ff cterm=NONE gui=NONE
 
 " Dash
 :nmap <silent> <leader>d <Plug>DashSearch
