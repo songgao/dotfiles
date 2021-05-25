@@ -91,3 +91,8 @@ alias gco="git checkout"
 alias gci="git commit"
 alias gcia="git commit --amend --date=\"$(date -R)\""
 alias gs="git status"
+
+# edit cmd in vim
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
