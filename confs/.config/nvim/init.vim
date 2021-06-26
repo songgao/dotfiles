@@ -7,6 +7,10 @@ Plug 'liuchengxu/vista.vim' " right column
 Plug 'rhysd/git-messenger.vim'
 Plug 'mhinz/vim-signify'
 
+" Fugitive is required for Conflicted
+Plug 'tpope/vim-fugitive'
+Plug 'christoomey/vim-conflicted'
+
 Plug 'neomake/neomake'
 " Plug 'majutsushi/tagbar'
 Plug 'christoomey/vim-tmux-navigator'
@@ -41,10 +45,18 @@ call plug#end()
 let mapleader="`"
 
 "" Lightline
-"" https://github.com/itchyny/lightline.vim/issues/293#issuecomment-373710096
+" https://github.com/itchyny/lightline.vim/issues/293#issuecomment-373710096
+" https://github.com/neoclide/coc.nvim/issues/512
+" https://github.com/liuchengxu/vista.vim#show-the-nearest-methodfunction-in-the-statusline
 let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified', 'CurrentFunction', 'cocstatus' ] ]
+      \ },
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
+      \   'cocstatus': 'coc#status',
+      \   'CurrentFunction': 'CurrentFunction'
       \ },
       \ }
 function! LightlineFilename()
@@ -54,6 +66,9 @@ function! LightlineFilename()
     return path[len(root)+1:]
   endif
   return expand('%')
+endfunction
+function! CurrentFunction()
+    return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 
 "" Tabs
@@ -116,6 +131,7 @@ hi IndentGuidesEven ctermbg=234
 
 " vista
 let g:vista#renderer#enable_icon = 1
+nmap <silent> <F4> :Vista!!<CR>
 
 " echodoc
 set noshowmode
@@ -168,6 +184,11 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 nmap <C-m> <Plug>(git-messenger)
 " signify
 nmap <C-g> :SignifyToggleHighlight<cr>
+" git-conflicted
+" Use `gl` and `gu` rather than the default conflicted diffget mappings
+let g:diffget_local_map = 'gl'
+let g:diffget_upstream_map = 'gu'
+set stl+=%{ConflictedVersion()}
 
 " Dash
 :nmap <silent> <leader>d <Plug>DashSearch
@@ -176,9 +197,6 @@ nmap <C-g> :SignifyToggleHighlight<cr>
 noremap <F3> :NERDTreeToggle<CR>
 let g:NERDTreeMapOpenSplit = 'x'
 let g:NERDTreeMapOpenVSplit = 'v'
-
-" TagBar
-" nmap <silent> <C-i> :Vista!!<CR>
 
 " CtrlP -> FZF
 nnoremap <c-p> :Files<cr>
