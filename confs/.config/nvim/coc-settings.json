@@ -47,6 +47,12 @@
     "zls": {
       "command": "~/repo/zls/zig-cache/bin/zls",
       "filetypes": ["zig"]
+    },
+    "go": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "trace.server": "verbose",
+      "filetypes": ["go"]
     }
   }
 }

@@ -1,10 +1,10 @@
 [user]
-	name = Song Gao
-	email = song@gao.io
+    name = Song Gao
+    email = song@gao.io
 [core]
-    autocrlf = input
+    autocrlf = false
     safecrlf = true
-    excludesfile = ~/.gitignore_global
+    excludesfile = /Users/zonggao/.gitignore_global
 [alias]
     co = checkout
     cob = checkout -b
@@ -34,9 +34,13 @@
 [diff]
     algorithm = patience
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+[mergetool "vimdiff3"]
+    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [mergetool "vimdiff"]
-  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    cmd = nvim -d $LOCAL $REMOTE
+[pull]
+    ff = only

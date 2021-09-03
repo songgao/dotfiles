@@ -1,2 +1,2 @@
 cd $(dirname $0)
-mkdir -p $(dirname $HOME/.tmux.conf) && ln -sni $PWD/confs/.tmux.conf $HOME/.tmux.conf
+mkdir -p $(dirname $HOME/.tmux.conf) && ln -sniT $PWD/confs/.tmux.conf $HOME/.tmux.conf

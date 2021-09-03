@@ -1,4 +1,4 @@
 cd $(dirname $0)
-mkdir -p $(dirname $HOME/.rc) && ln -sni $PWD/confs/.rc $HOME/.rc
-mkdir -p $(dirname $HOME/.zplug) && ln -sni $PWD/confs/zplug $HOME/.zplug
-mkdir -p $(dirname $HOME/.zshrc) && ln -sni $PWD/confs/.zshrc $HOME/.zshrc
+mkdir -p $(dirname $HOME/.rc) && ln -sniT $PWD/confs/.rc $HOME/.rc
+mkdir -p $(dirname $HOME/.zplug) && ln -sniT $PWD/confs/zplug $HOME/.zplug
+mkdir -p $(dirname $HOME/.zshrc) && ln -sniT $PWD/confs/.zshrc $HOME/.zshrc

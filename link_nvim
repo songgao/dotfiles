@@ -1,4 +1,5 @@
 cd $(dirname $0)
-mkdir -p $(dirname $HOME/.config/nvim/init.vim) && ln -sni $PWD/confs/.config/nvim/init.vim $HOME/.config/nvim/init.vim
-mkdir -p $(dirname $HOME/.config/nvim/autoload/plug.vim) && ln -sni $PWD/confs/.config/nvim/autoload/plug.vim $HOME/.config/nvim/autoload/plug.vim
-mkdir -p $(dirname $HOME/.config/nvim/coc-settings.json) && ln -sni $PWD/confs/.config/nvim/coc-settings.json $HOME/.config/nvim/coc-settings.json
+mkdir -p $(dirname $HOME/.config/nvim/init.lua) && ln -sniT $PWD/confs/.config/nvim/init.lua $HOME/.config/nvim/init.lua
+mkdir -p $(dirname $HOME/.config/nvim/lua) && ln -sniT $PWD/confs/.config/nvim/lua $HOME/.config/nvim/lua
+mkdir -p $(dirname $HOME/.config/nvim/autoload/plug.vim) && ln -sniT $PWD/confs/.config/nvim/autoload/plug.vim $HOME/.config/nvim/autoload/plug.vim
+mkdir -p $(dirname $HOME/.config/nvim/coc-settings.json) && ln -sniT $PWD/confs/.config/nvim/coc-settings.json $HOME/.config/nvim/coc-settings.json

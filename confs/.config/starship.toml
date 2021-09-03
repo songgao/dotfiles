@@ -1,6 +1,7 @@
 [directory]
 truncate_to_repo = false
 truncation_symbol = "…/"
+truncation_length = 9
 
 [status]
 disabled = false
@@ -10,3 +11,8 @@ disabled = true
 
 [aws]
 disabled = true
+
+[env_var]
+variable = "GOPATH"
+style = "bold yellow"
+format = "GOPATH=[$env_value]($style) "
