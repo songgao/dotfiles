@@ -23,7 +23,6 @@ return require('packer').startup(function(use)
   use 'christoomey/vim-tmux-navigator'
 
   use 'rafi/awesome-vim-colorschemes' --  colorschemes
-  -- use 'itchyny/lightline.vim' --  status bar / tabs
   use {
     'glepnir/galaxyline.nvim',
     branch = 'main',
@@ -32,10 +31,10 @@ return require('packer').startup(function(use)
     -- some optional icons
     requires = {'kyazdani42/nvim-web-devicons'}
   }
-  use {
-    'romgrk/barbar.nvim',
-    requires = {'kyazdani42/nvim-web-devicons'}
-  }--  tabline/bufferline
+  -- use {
+  --   'romgrk/barbar.nvim',
+  --   requires = {'kyazdani42/nvim-web-devicons'}
+  -- }--  tabline/bufferline
   use 'liuchengxu/vista.vim' --  right column
   use {
     'kyazdani42/nvim-tree.lua',
@@ -61,13 +60,18 @@ return require('packer').startup(function(use)
   use 'tpope/vim-surround'
   use 'dhruvasagar/vim-table-mode'
 
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', 'nvim-lua/plenary.nvim'},
-    {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      run = "make",
-    },
+    config = function()
+      require "plugins.config_telescope"
+    end,
+    requires = {
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        run = "make",
+      },
+    }
   }-- CtrlF/CtrlP
 
 end)
