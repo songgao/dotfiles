@@ -1,6 +1,6 @@
 [user]
     name = Song Gao
-    email = song@gao.io
+    email = song.gao@zoom.us
 [core]
     autocrlf = false
     safecrlf = true
@@ -44,3 +44,5 @@
     cmd = nvim -d $LOCAL $REMOTE
 [pull]
     ff = only
+[url "git@git.zoom.us:"]
+	insteadOf = https://git.zoom.us

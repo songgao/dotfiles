@@ -77,9 +77,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.zig/zig:$PATH"
 
 # Editors
-export VISUAL="nvim"
-export EDITOR="nvim"
-alias vim=nvim
+export VISUAL="lvim"
+export EDITOR="lvim"
+alias vim=lvim
 
 # ripgrep
 alias rg="rg --colors 'match:bg:yellow' --colors 'match:fg:0xA0,0xA0,0xA0' --colors 'match:style:nobold' --colors 'path:fg:green' --colors 'path:style:intense' --colors 'line:fg:yellow' --smart-case --line-buffered"
@@ -87,10 +87,12 @@ alias rg="rg --colors 'match:bg:yellow' --colors 'match:fg:0xA0,0xA0,0xA0' --col
 # git
 alias gpull="git pull --ff-only"
 alias gpo="git push origin"
+alias gfo="git fetch origin"
 alias gco="git checkout"
 alias gci="git commit"
 alias gcia="git commit --amend --date=\"$(date -R)\""
 alias gs="git status"
+alias g="gitui"
 
 # edit cmd in vim
 autoload -U edit-command-line

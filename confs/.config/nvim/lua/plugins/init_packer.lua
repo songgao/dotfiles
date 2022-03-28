@@ -51,7 +51,7 @@ return require('packer').startup(function(use)
 
   use {'neoclide/coc.nvim', branch = 'release'}
   use 'jackguo380/vim-lsp-cxx-highlight'
-  use 'rust-lang/rust.vim'
+--  use 'rust-lang/rust.vim'
   use 'dln/avro-vim'
   use 'kchmck/vim-coffee-script'
   use 'noc7c9/vim-iced-coffee-script'

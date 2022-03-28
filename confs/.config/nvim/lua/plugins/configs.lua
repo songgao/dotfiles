@@ -45,8 +45,8 @@ noremap <F3> :NvimTreeToggle<CR>
 
 -- Telescope: CtrlP / CtrlF
 vim.api.nvim_exec([[
-nnoremap <c-p> :Telescope find_files<cr>
-nnoremap <c-f> :Telescope live_grep<cr>
+nnoremap <c-p> :Files<cr>
+nnoremap <c-f> :Rg<cr>
 ]], false)
 
 -- *.avdl
