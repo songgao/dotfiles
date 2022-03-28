@@ -1,0 +1,2 @@
+cd $(dirname $0)
+mkdir -p $(dirname $HOME/.config/lvim/config.lua) && ln -sniT $PWD/confs/.config/lvim/config.lua $HOME/.config/lvim/config.lua
