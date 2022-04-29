@@ -1,6 +1,6 @@
 [user]
     name = Song Gao
-    email = song.gao@zoom.us
+    email = song@gao.io
 [core]
     autocrlf = false
     safecrlf = true
