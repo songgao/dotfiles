@@ -80,6 +80,7 @@ export PATH="$HOME/.zig/zig:$PATH"
 export VISUAL="lvim"
 export EDITOR="lvim"
 alias vim=lvim
+bindkey -e # bring back Ctrl-A/Ctrl-E that's surpressed by having EDITOR/VISUAL
 
 # ripgrep
 alias rg="rg --colors 'match:bg:yellow' --colors 'match:fg:0xA0,0xA0,0xA0' --colors 'match:style:nobold' --colors 'path:fg:green' --colors 'path:style:intense' --colors 'line:fg:yellow' --smart-case --line-buffered"

@@ -10,7 +10,7 @@ an executable
 
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save = true
+lvim.format_on_save = {pattern = '*.h,*.cc,*.go,*.c,*.json,*.lua'}
 -- lvim.colorscheme = "sonokai"
 lvim.colorscheme = "kanagawa"
 
@@ -55,7 +55,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.active = true
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
@@ -160,7 +160,7 @@ vim.opt.shell = "/bin/sh"
 lvim.plugins = {
   {"sainnhe/sonokai"},
   {"ray-x/lsp_signature.nvim"},
-  {"rmagatti/auto-session"},
+  {"tpope/vim-obsession"},
   {"rebelot/kanagawa.nvim"},
 }
 vim.opt.clipboard = ""
@@ -168,4 +168,6 @@ vim.o.wrap = true
 lvim.keys.normal_mode["<C-p>"] = "<cmd>Telescope find_files<CR>"
 lvim.keys.normal_mode["<C-f>"] = "<cmd>Telescope live_grep<CR>"
 lvim.builtin.project.manual_mode = true
+lvim.builtin.autopairs.active = false
+lvim.builtin.bufferline.options.mode = 'tabs'
 require "lsp_signature".setup({})
