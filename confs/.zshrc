@@ -32,10 +32,6 @@ setopt hist_reduce_blanks # remove superfluous blanks from history items
 setopt inc_append_history # save history entries as soon as they are entered
 setopt share_history # share history between different instances of the shell
 
-# arrow up/down
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
 # confirm history expansion
 setopt hist_verify
 
@@ -52,6 +48,10 @@ source $HOME/.rc
 if [ -f $HOME/.rc.local ]; then
   source $HOME/.rc.local
 fi
+
+# arrow up/down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # enable starship
 eval "$(starship init zsh)"

@@ -162,6 +162,7 @@ lvim.plugins = {
   {"ray-x/lsp_signature.nvim"},
   {"tpope/vim-obsession"},
   {"rebelot/kanagawa.nvim"},
+  {"dhruvasagar/vim-table-mode"},
 }
 vim.opt.clipboard = ""
 vim.o.wrap = true

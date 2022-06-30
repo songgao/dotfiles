@@ -1,7 +1,30 @@
 local wezterm = require 'wezterm';
 
+local sep = "      "
+
+function get_stats()
+  local success, stdout, stderr = wezterm.run_child_process({"bash", "-c", [[top -l 1 -s 0 -n0 | grep 'CPU\|PhysMem' | sed 's/CPU.*sys, \(.*\) idle/CPU: \1 Idle/' | sed 's/PhysMem.* (\(.*\) wired).*/RAM: \1 Wired/']]})
+  if (not success) then
+    return ""
+  end
+  return string.gsub(stdout, "\n", sep)
+end
+
+wezterm.on("update-right-status", function(window, pane)
+  local date = wezterm.strftime("%H:%M:%S | %m/%d/%Y");
+  local stats = get_stats()
+
+  -- Make it italic and underlined
+  window:set_right_status(wezterm.format({
+    {Attribute={Underline="Single"}},
+    {Text=stats..sep..date..sep},
+  }));
+end);
+
 return {
   font = wezterm.font("FuraCode NF"),
+
+  exit_behavior = "Close",
 
   keys = {
     { key = "k", mods = "CMD",
@@ -40,6 +63,7 @@ return {
   set_environment_variables = {
     MAIN = "",
     MAIL = "",
-    ADHOC = ""
+    ADHOC = "",
+    VM = ""
   }
 }
