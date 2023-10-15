@@ -10,9 +10,9 @@ an executable
 
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save = {pattern = '*.h,*.cc,*.go,*.c,*.json,*.lua'}
--- lvim.colorscheme = "sonokai"
-lvim.colorscheme = "kanagawa"
+lvim.format_on_save = { pattern = '*.h,*.cc,*.go,*.c,*.json,*.lua,*.tsx,*.html,*.css' }
+lvim.colorscheme = "sonokai"
+-- lvim.colorscheme = "kanagawa"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -55,11 +55,11 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.alpha.active = true
-lvim.builtin.notify.active = true
-lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
+-- lvim.builtin.alpha.active = true
+-- lvim.builtin.notify.active = true
+-- lvim.builtin.terminal.active = true
+-- lvim.builtin.nvimtree.setup.view.side = "left"
+-- lvim.builtin.nvimtree.show_icons.git = 0
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -122,6 +122,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   { command = "goimports", filetypes = { "go" } },
+  { command = "prettier", filetypes = { "typescriptreact", "css" } },
 }
 
 -- -- set additional linters
@@ -158,16 +159,19 @@ formatters.setup {
 
 vim.opt.shell = "/bin/sh"
 lvim.plugins = {
-  {"sainnhe/sonokai"},
-  {"ray-x/lsp_signature.nvim"},
-  {"tpope/vim-obsession"},
-  {"rebelot/kanagawa.nvim"},
-  {"dhruvasagar/vim-table-mode"},
+  { "sainnhe/sonokai" },
+  { "ray-x/lsp_signature.nvim" },
+  { "tpope/vim-obsession" },
+  { "rebelot/kanagawa.nvim" },
+  { "dhruvasagar/vim-table-mode" },
+  { "tamton-aquib/duck.nvim" },
 }
 vim.opt.clipboard = ""
 vim.o.wrap = true
 lvim.keys.normal_mode["<C-p>"] = "<cmd>Telescope find_files<CR>"
 lvim.keys.normal_mode["<C-f>"] = "<cmd>Telescope live_grep<CR>"
+lvim.keys.normal_mode["<leader>dd"] = function() require("duck").hatch() end
+lvim.keys.normal_mode["<leader>dk"] = function() require("duck").cook() end
 lvim.builtin.project.manual_mode = true
 lvim.builtin.autopairs.active = false
 lvim.builtin.bufferline.options.mode = 'tabs'

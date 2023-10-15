@@ -1,10 +1,11 @@
 [user]
-    name = Song Gao
-    email = song@gao.io
+	name = Song Gao
+	email = song.gao@zoom.us
+	signingkey = 99B314F1651467DC78F43C74EDF86684F22BF37E
 [core]
     autocrlf = false
     safecrlf = true
-    excludesfile = /Users/zonggao/.gitignore_global
+    excludesfile = /Users/songgao/.gitignore_global
 [alias]
     co = checkout
     cob = checkout -b
@@ -23,9 +24,6 @@
     default = nothing
 [http]
     cookiefile = /Users/songgao/.gitcookies
-[pager]
-    diff = diff-so-fancy | less --tabs=1,5 -RFX
-    show = diff-so-fancy | less --tabs=1,5 -RFX
 [rerere]
     enabled = 1
 [merge]
@@ -46,3 +44,25 @@
     ff = only
 [url "git@git.zoom.us:"]
 	insteadOf = https://git.zoom.us
+	insteadOf = https://git.zoom.us/
+	insteadOf = https://git.zoom.us/
+
+# delta
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[add.interactive]
+    useBuiltin = false # required for git 2.37.0
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+  line-numbers = true
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg

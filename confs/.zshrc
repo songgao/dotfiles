@@ -3,6 +3,7 @@ source ~/.zplug/init.zsh
 # zplug "larkery/zsh-histdb"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-history-substring-search"
+zplug "jeffreytse/zsh-vi-mode"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -52,6 +53,25 @@ fi
 # arrow up/down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey -M viins '^[[A' history-substring-search-up
+bindkey -M viins '^[[B' history-substring-search-down
 
 # enable starship
 eval "$(starship init zsh)"
+
+# 
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/Users/songgao/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/Users/songgao/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/Users/songgao/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/Users/songgao/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
+# 

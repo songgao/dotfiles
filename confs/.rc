@@ -1,11 +1,25 @@
-export PATH=$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/.local/bin:$HOME/bin:$PATH
 
 # use GNU coreutils on macOS
 if [[ $(uname) == 'Darwin' ]]
 then
-    # GNU coreutils
-    PATH="/usr/local/opt/coreutils/libexec/gnubin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
-    MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+    if [ -f /opt/homebrew/CHANGELOG.md ]; then
+        export HOMEBREW_PREFIX="/opt/homebrew";
+        export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+        export HOMEBREW_REPOSITORY="/opt/homebrew";
+        export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+        export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+        export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+
+        # disabling for now because of "Permission error" 
+        # # GNU coreutils
+        # PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+        # MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
+    else
+        # GNU coreutils
+        PATH="/usr/local/opt/coreutils/libexec/gnubin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+        MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+    fi
 fi
 
 if which exa &> /dev/null; then
