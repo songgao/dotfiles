@@ -91,9 +91,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.zig/zig:$PATH"
 
 # Editors
-export VISUAL="lvim"
-export EDITOR="lvim"
-alias vim=lvim
+export VISUAL="nvim"
+export EDITOR="nvim"
+alias vim=nvim
 bindkey -e # bring back Ctrl-A/Ctrl-E that's surpressed by having EDITOR/VISUAL
 
 # ripgrep
