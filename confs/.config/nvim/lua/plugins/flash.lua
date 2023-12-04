@@ -5,4 +5,11 @@ return {
     { "s", mode = { "n", "x", "o" }, false },
     { "S", mode = { "n", "x", "o" }, false },
   },
+  opts = {
+    modes = {
+      search = {
+        enabled = false,
+      },
+    },
+  },
 }
