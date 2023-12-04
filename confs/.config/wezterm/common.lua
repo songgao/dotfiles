@@ -35,7 +35,7 @@ wezterm.on("update-right-status", function(window, pane)
 end);
 
 return {
-  font = wezterm.font("FiraCode NF"),
+  font = wezterm.font("Fira Code"),
 
   exit_behavior = "Close",
 
