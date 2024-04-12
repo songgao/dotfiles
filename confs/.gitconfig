@@ -1,6 +1,6 @@
 [user]
 	name = Song Gao
-	email = song.gao@zoom.us
+	email = song@gao.io
 	signingkey = 99B314F1651467DC78F43C74EDF86684F22BF37E
 [core]
     autocrlf = false
@@ -62,7 +62,7 @@
     conflictstyle = diff3
 [diff]
     colorMoved = default
-[commit]
-	gpgsign = true
-[gpg]
-	program = gpg
+# [commit]
+# 	gpgsign = true
+# [gpg]
+# 	program = gpg
